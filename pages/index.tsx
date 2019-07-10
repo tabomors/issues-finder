@@ -12,8 +12,8 @@ const IndexPage: NextPage = () => {
       { viewer { login }}
     `}>
       {({ data } : any) => {
-        console.log("IndexPage data:", data);
-
+        console.log(data);
+        
         return (
           <Layout title="Home | Next.js + TypeScript Example">
             <h1>hello Next.js 👋</h1>
