@@ -9,6 +9,7 @@
     "gen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.136",
     "apollo-boost": "^0.4.3",
     "apollo-link-context": "^1.0.18",
     "apollo-link-http": "^1.5.15",
@@ -16,8 +17,11 @@
     "express": "^4.17.1",
     "graphql": "^14.4.2",
     "http-proxy-middleware": "^0.19.1",
+    "install": "^0.13.0",
     "isomorphic-unfetch": "^3.0.0",
+    "lodash": "^4.17.14",
     "next": "8.1.1-canary.61",
+    "npm": "^6.10.0",
     "react": "16.8.6",
     "react-apollo": "^2.5.8",
     "react-apollo-hooks": "^0.5.0",
