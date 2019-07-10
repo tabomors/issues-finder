@@ -1,0 +1,15 @@
+overwrite: true
+schema:
+  - ./schema.public.graphql
+documents: "./lib/graphql/**/*.{tsx,ts,graphql}"
+generates:
+  ./generated/graphql.tsx:
+    config:
+      noNamespaces: true
+      # contextType: ../context#MyContext
+      withHooks: true
+      noHOC: true
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
