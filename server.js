@@ -25,6 +25,11 @@ app
   .then(() => {
     const app = express();
 
+    app.use((req, res, next) => {
+      console.log(`Request url is ${req.url}`)
+      next()
+    })
+
     Object.keys(proxy).forEach(context => {
       app.use(proxyMiddleware(context, proxy[context]));
     });

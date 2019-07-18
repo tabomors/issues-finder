@@ -7,6 +7,7 @@ import { setContext } from "apollo-link-context";
 import { createHttpLink } from "apollo-link-http";
 import fetch from "isomorphic-unfetch";
 import { isBrowser } from "./isBrowser";
+import { GetLanguageDocument, GetLabelsDocument } from "../generated/graphql";
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 
@@ -22,7 +23,7 @@ interface Options {
 function create(initialState: any, { getToken }: Options) {
   const httpLink = createHttpLink({
     uri: "http://localhost:3000/api",
-    credentials: "include",
+    credentials: "include"
   });
 
   const authLink = setContext((_, { headers }) => {
@@ -31,10 +32,10 @@ function create(initialState: any, { getToken }: Options) {
     return {
       headers: {
         ...headers,
-        authorization: token ? `Bearer ${token}` : "",
+        authorization: token ? `Bearer ${token}` : ""
       },
       fetchOptions: {
-        credentials: 'include'
+        credentials: "include"
       }
     };
   });
@@ -44,7 +45,42 @@ function create(initialState: any, { getToken }: Options) {
     connectToDevTools: isBrowser,
     ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
     link: authLink.concat(httpLink),
-    cache: new InMemoryCache().restore(initialState || {})
+    cache: new InMemoryCache().restore(initialState || {}),
+    resolvers: {
+      Query: {
+        getLanguage: (_, args, { cache }) => {
+          const { label } = cache.readQuery({
+            query: GetLanguageDocument
+          });
+
+          return label;
+        }
+      },
+      Mutation: {
+        setLanguage: (_, { language }, { cache }) => {
+          cache.writeData({
+            data: {
+              language
+            }
+          });
+
+          return null;
+        },
+        addLabel: (_, { label }, { cache }) => {
+          const { labels } = cache.readQuery({
+            query: GetLabelsDocument
+          });
+
+          cache.writeData({
+            data: {
+              labels: [...labels, label]
+            }
+          });
+
+          return null;
+        }
+      }
+    }
   });
 }
 

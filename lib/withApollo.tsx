@@ -5,7 +5,8 @@ import React from "react";
 import { getDataFromTree } from "react-apollo";
 import initApollo from "./initApollo";
 import { isBrowser } from "./isBrowser";
-
+import { renderToString } from "react-dom/server";
+import { getMarkupFromTree } from "react-apollo-hooks";
 
 function parseCookies(req?: any, options = {}) {
   return cookie.parse(
@@ -27,11 +28,14 @@ export default (App: any) => {
       const apollo = initApollo(
         {},
         {
-          getToken: () : any => {
-            return parseCookies(req).token
+          getToken: (): any => {
+            return parseCookies(req).token;
           }
         }
       );
+      
+      // Write default data to apollo cache
+      apollo.cache.writeData({ data: { language: '', labels: [] } })
 
       ctx.ctx.apolloClient = apollo;
 
@@ -51,14 +55,17 @@ export default (App: any) => {
         // and extract the resulting data
         try {
           // Run all GraphQL queries
-          await getDataFromTree(
-            <App
-              {...appProps}
-              Component={Component}
-              router={router}
-              apolloClient={apollo}
-            />
-          );
+          await getMarkupFromTree({
+            renderFunction: renderToString,
+            tree: (
+              <App
+                {...appProps}
+                Component={Component}
+                router={router}
+                apolloClient={apollo}
+              />
+            )
+          });
         } catch (error) {
           // Prevent Apollo Client GraphQL errors from crashing SSR.
           // Handle them in components via the data.error prop:
@@ -84,11 +91,14 @@ export default (App: any) => {
 
     constructor(props: any) {
       super(props);
+
+      console.log('props.apolloState', props.apolloState)
+
       // `getDataFromTree` renders the component first, the client is passed off as a property.
       // After that rendering is done using Next's normal rendering pipeline
       this.apolloClient = initApollo(props.apolloState, {
         getToken: (): any => {
-          return parseCookies().token
+          return parseCookies().token;
         }
       });
     }

@@ -1,6 +1,7 @@
 overwrite: true
 schema:
   - ./schema.public.graphql
+  - ./schema.client.graphql
 documents: "./lib/graphql/**/*.{tsx,ts,graphql}"
 generates:
   ./generated/graphql.tsx:
@@ -13,3 +14,4 @@ generates:
       - "typescript"
       - "typescript-operations"
       - "typescript-react-apollo"
+      # - "typescript-resolvers"

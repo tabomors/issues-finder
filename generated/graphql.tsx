@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
-import * as React from "react";
 import * as ReactApollo from "react-apollo";
+import * as React from "react";
 import * as ReactApolloHooks from "react-apollo-hooks";
 export type Maybe<T> = T | null;
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
@@ -5498,6 +5498,8 @@ export type Mutation = {
   updateTeamDiscussionComment?: Maybe<UpdateTeamDiscussionCommentPayload>;
   /** Replaces the repository's topics with the given topics. */
   updateTopics?: Maybe<UpdateTopicsPayload>;
+  addLabel?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  setLanguage?: Maybe<Scalars["String"]>;
 };
 
 /** The root query for implementing GraphQL mutations. */
@@ -5928,6 +5930,16 @@ export type MutationUpdateTeamDiscussionCommentArgs = {
 /** The root query for implementing GraphQL mutations. */
 export type MutationUpdateTopicsArgs = {
   input: UpdateTopicsInput;
+};
+
+/** The root query for implementing GraphQL mutations. */
+export type MutationAddLabelArgs = {
+  label: Scalars["String"];
+};
+
+/** The root query for implementing GraphQL mutations. */
+export type MutationSetLanguageArgs = {
+  language: Scalars["String"];
 };
 
 /** An object with an ID. */
@@ -9624,6 +9636,9 @@ export type Query = {
   user?: Maybe<User>;
   /** The currently authenticated user. */
   viewer: User;
+  getLanguage?: Maybe<Scalars["String"]>;
+  language?: Maybe<Scalars["String"]>;
+  labels: Array<Maybe<Scalars["String"]>>;
 };
 
 /** The query root of GitHub's GraphQL interface. */
@@ -14813,6 +14828,15 @@ export type ViewerHovercardContext = HovercardContext & {
   viewer: User;
 };
 
+export type AddLabelMutationVariables = {
+  label: Scalars["String"];
+};
+
+export type AddLabelMutation = { __typename?: "Mutation" } & Pick<
+  Mutation,
+  "addLabel"
+>;
+
 export type IssueContentFragment = { __typename?: "Issue" } & Pick<
   Issue,
   "url" | "id" | "body" | "publishedAt" | "closed"
@@ -14856,6 +14880,26 @@ export type FindIssuesQuery = { __typename?: "Query" } & {
     >;
   };
 };
+
+export type GetLabelsQueryVariables = {};
+
+export type GetLabelsQuery = { __typename?: "Query" } & Pick<Query, "labels">;
+
+export type GetLanguageQueryVariables = {};
+
+export type GetLanguageQuery = { __typename?: "Query" } & Pick<
+  Query,
+  "language"
+>;
+
+export type SetLanguageMutationVariables = {
+  language: Scalars["String"];
+};
+
+export type SetLanguageMutation = { __typename?: "Mutation" } & Pick<
+  Mutation,
+  "setLanguage"
+>;
 export const IssueContentFragmentDoc = gql`
   fragment IssueContent on Issue {
     url
@@ -14875,6 +14919,61 @@ export const IssueContentFragmentDoc = gql`
     }
   }
 `;
+export const AddLabelDocument = gql`
+  mutation AddLabel($label: String!) {
+    addLabel(label: $label) @client
+  }
+`;
+export type AddLabelMutationFn = ReactApollo.MutationFn<
+  AddLabelMutation,
+  AddLabelMutationVariables
+>;
+export type AddLabelComponentProps = Omit<
+  ReactApollo.MutationProps<AddLabelMutation, AddLabelMutationVariables>,
+  "mutation"
+>;
+
+export const AddLabelComponent = (props: AddLabelComponentProps) => (
+  <ReactApollo.Mutation<AddLabelMutation, AddLabelMutationVariables>
+    mutation={AddLabelDocument}
+    {...props}
+  />
+);
+
+export type AddLabelProps<TChildProps = {}> = Partial<
+  ReactApollo.MutateProps<AddLabelMutation, AddLabelMutationVariables>
+> &
+  TChildProps;
+export function withAddLabel<TProps, TChildProps = {}>(
+  operationOptions?: ReactApollo.OperationOption<
+    TProps,
+    AddLabelMutation,
+    AddLabelMutationVariables,
+    AddLabelProps<TChildProps>
+  >
+) {
+  return ReactApollo.withMutation<
+    TProps,
+    AddLabelMutation,
+    AddLabelMutationVariables,
+    AddLabelProps<TChildProps>
+  >(AddLabelDocument, {
+    alias: "withAddLabel",
+    ...operationOptions
+  });
+}
+
+export function useAddLabelMutation(
+  baseOptions?: ReactApolloHooks.MutationHookOptions<
+    AddLabelMutation,
+    AddLabelMutationVariables
+  >
+) {
+  return ReactApolloHooks.useMutation<
+    AddLabelMutation,
+    AddLabelMutationVariables
+  >(AddLabelDocument, baseOptions);
+}
 export const FindIssuesDocument = gql`
   query findIssues($query: String!, $after: String) {
     search(type: ISSUE, query: $query, first: 50, after: $after) {
@@ -14938,4 +15037,155 @@ export function useFindIssuesQuery(
     FindIssuesDocument,
     baseOptions
   );
+}
+export const GetLabelsDocument = gql`
+  query GetLabels {
+    labels @client
+  }
+`;
+export type GetLabelsComponentProps = Omit<
+  ReactApollo.QueryProps<GetLabelsQuery, GetLabelsQueryVariables>,
+  "query"
+>;
+
+export const GetLabelsComponent = (props: GetLabelsComponentProps) => (
+  <ReactApollo.Query<GetLabelsQuery, GetLabelsQueryVariables>
+    query={GetLabelsDocument}
+    {...props}
+  />
+);
+
+export type GetLabelsProps<TChildProps = {}> = Partial<
+  ReactApollo.DataProps<GetLabelsQuery, GetLabelsQueryVariables>
+> &
+  TChildProps;
+export function withGetLabels<TProps, TChildProps = {}>(
+  operationOptions?: ReactApollo.OperationOption<
+    TProps,
+    GetLabelsQuery,
+    GetLabelsQueryVariables,
+    GetLabelsProps<TChildProps>
+  >
+) {
+  return ReactApollo.withQuery<
+    TProps,
+    GetLabelsQuery,
+    GetLabelsQueryVariables,
+    GetLabelsProps<TChildProps>
+  >(GetLabelsDocument, {
+    alias: "withGetLabels",
+    ...operationOptions
+  });
+}
+
+export function useGetLabelsQuery(
+  baseOptions?: ReactApolloHooks.QueryHookOptions<GetLabelsQueryVariables>
+) {
+  return ReactApolloHooks.useQuery<GetLabelsQuery, GetLabelsQueryVariables>(
+    GetLabelsDocument,
+    baseOptions
+  );
+}
+export const GetLanguageDocument = gql`
+  query GetLanguage {
+    language @client
+  }
+`;
+export type GetLanguageComponentProps = Omit<
+  ReactApollo.QueryProps<GetLanguageQuery, GetLanguageQueryVariables>,
+  "query"
+>;
+
+export const GetLanguageComponent = (props: GetLanguageComponentProps) => (
+  <ReactApollo.Query<GetLanguageQuery, GetLanguageQueryVariables>
+    query={GetLanguageDocument}
+    {...props}
+  />
+);
+
+export type GetLanguageProps<TChildProps = {}> = Partial<
+  ReactApollo.DataProps<GetLanguageQuery, GetLanguageQueryVariables>
+> &
+  TChildProps;
+export function withGetLanguage<TProps, TChildProps = {}>(
+  operationOptions?: ReactApollo.OperationOption<
+    TProps,
+    GetLanguageQuery,
+    GetLanguageQueryVariables,
+    GetLanguageProps<TChildProps>
+  >
+) {
+  return ReactApollo.withQuery<
+    TProps,
+    GetLanguageQuery,
+    GetLanguageQueryVariables,
+    GetLanguageProps<TChildProps>
+  >(GetLanguageDocument, {
+    alias: "withGetLanguage",
+    ...operationOptions
+  });
+}
+
+export function useGetLanguageQuery(
+  baseOptions?: ReactApolloHooks.QueryHookOptions<GetLanguageQueryVariables>
+) {
+  return ReactApolloHooks.useQuery<GetLanguageQuery, GetLanguageQueryVariables>(
+    GetLanguageDocument,
+    baseOptions
+  );
+}
+export const SetLanguageDocument = gql`
+  mutation SetLanguage($language: String!) {
+    setLanguage(language: $language) @client
+  }
+`;
+export type SetLanguageMutationFn = ReactApollo.MutationFn<
+  SetLanguageMutation,
+  SetLanguageMutationVariables
+>;
+export type SetLanguageComponentProps = Omit<
+  ReactApollo.MutationProps<SetLanguageMutation, SetLanguageMutationVariables>,
+  "mutation"
+>;
+
+export const SetLanguageComponent = (props: SetLanguageComponentProps) => (
+  <ReactApollo.Mutation<SetLanguageMutation, SetLanguageMutationVariables>
+    mutation={SetLanguageDocument}
+    {...props}
+  />
+);
+
+export type SetLanguageProps<TChildProps = {}> = Partial<
+  ReactApollo.MutateProps<SetLanguageMutation, SetLanguageMutationVariables>
+> &
+  TChildProps;
+export function withSetLanguage<TProps, TChildProps = {}>(
+  operationOptions?: ReactApollo.OperationOption<
+    TProps,
+    SetLanguageMutation,
+    SetLanguageMutationVariables,
+    SetLanguageProps<TChildProps>
+  >
+) {
+  return ReactApollo.withMutation<
+    TProps,
+    SetLanguageMutation,
+    SetLanguageMutationVariables,
+    SetLanguageProps<TChildProps>
+  >(SetLanguageDocument, {
+    alias: "withSetLanguage",
+    ...operationOptions
+  });
+}
+
+export function useSetLanguageMutation(
+  baseOptions?: ReactApolloHooks.MutationHookOptions<
+    SetLanguageMutation,
+    SetLanguageMutationVariables
+  >
+) {
+  return ReactApolloHooks.useMutation<
+    SetLanguageMutation,
+    SetLanguageMutationVariables
+  >(SetLanguageDocument, baseOptions);
 }

@@ -1,0 +1,10 @@
+type Query {
+  getLanguage: String
+  language: String
+  labels: [String]!
+}
+
+type Mutation {
+  addLabel(label: String!): [String]
+  setLanguage(language: String!): String
+}

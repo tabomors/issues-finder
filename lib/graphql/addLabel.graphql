@@ -1,0 +1,3 @@
+mutation AddLabel($label: String!) {
+  addLabel(label: $label) @client
+}
