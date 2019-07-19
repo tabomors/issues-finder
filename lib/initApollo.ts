@@ -7,7 +7,7 @@ import { setContext } from "apollo-link-context";
 import { createHttpLink } from "apollo-link-http";
 import fetch from "isomorphic-unfetch";
 import { isBrowser } from "./isBrowser";
-import { GetLanguageDocument, GetLabelsDocument } from "../generated/graphql";
+import resolvers from '../graphql/resolvers'
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 
@@ -46,41 +46,7 @@ function create(initialState: any, { getToken }: Options) {
     ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
     link: authLink.concat(httpLink),
     cache: new InMemoryCache().restore(initialState || {}),
-    resolvers: {
-      Query: {
-        getLanguage: (_, args, { cache }) => {
-          const { label } = cache.readQuery({
-            query: GetLanguageDocument
-          });
-
-          return label;
-        }
-      },
-      Mutation: {
-        setLanguage: (_, { language }, { cache }) => {
-          cache.writeData({
-            data: {
-              language
-            }
-          });
-
-          return null;
-        },
-        addLabel: (_, { label }, { cache }) => {
-          const { labels } = cache.readQuery({
-            query: GetLabelsDocument
-          });
-
-          cache.writeData({
-            data: {
-              labels: [...labels, label]
-            }
-          });
-
-          return null;
-        }
-      }
-    }
+    resolvers: resolvers as any
   });
 }
 

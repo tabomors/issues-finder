@@ -1,6 +1,6 @@
 import { DataProxy } from "apollo-cache";
 
-export interface MyContext {
+export interface ClientContext {
   cache: DataProxy;
   getCacheKey: (options: { __typename: string; id: string }) => string;
 }

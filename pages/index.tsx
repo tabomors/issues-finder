@@ -1,16 +1,14 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
+
 import Layout from "../components/Layout";
 import { NextPage } from "next";
-import {
-  useFindIssuesQuery,
-  FindIssuesQuery,
-  useSetLanguageMutation,
-  useGetLanguageQuery,
-  useGetLabelsQuery,
-  useAddLabelMutation
-} from "../generated/graphql";
 import get from "lodash/get";
+import { useGetLanguageQuery } from "../graphql/language/getLanguage.generated";
+import { useSetLanguageMutation } from "../graphql/language/setLanguage.generated";
+import { useGetLabelsQuery } from "../graphql/label/getLabels.generated";
+import { useAddLabelMutation } from "../graphql/label/addLabel.generated";
+import { useFindIssuesQuery, FindIssuesQuery } from "../graphql/issue/findIssues.generated";
 
 const buildQuery = (language: any, labels: any): string => {
   const languageWithPrefix = `language:${language}`;
@@ -28,15 +26,12 @@ const IndexPage: NextPage = () => {
 
   const { data: labelsData } = useGetLabelsQuery();
   const labels = (labelsData && labelsData.labels) || [];
-  // TODO: run this mutation
   const [addLabel] = useAddLabelMutation();
 
-  // TODO: uncomment it
   console.log('language', language)
   console.log('labels', labels)
 
   const shouldRunQuery = language && labels.length > 0;
-  // const shouldRunQuery = false;
 
   const { data, loading, fetchMore } = useFindIssuesQuery({
     variables: { query: buildQuery(language, labels) },

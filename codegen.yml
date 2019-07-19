@@ -1,17 +1,35 @@
 overwrite: true
-schema:
-  - ./schema.public.graphql
-  - ./schema.client.graphql
-documents: "./lib/graphql/**/*.{tsx,ts,graphql}"
 generates:
-  ./generated/graphql.tsx:
+  types/types.ts:
+    documents: './{lib,graphql}/**/*.graphql'
+    schema:
+      - ./schema.public.graphql
+      - ./schema.client.graphql
+    plugins:
+      - typescript
+  types/:
+    documents: './{lib,graphql}/**/*.graphql'
+    schema:
+      - ./schema.public.graphql
+      - ./schema.client.graphql
     config:
       noNamespaces: true
-      # contextType: ../context#MyContext
       withHooks: true
-      noHOC: true
+      withComponent: false
+      withHOC: false
+    preset: near-operation-file
+    presetConfig:
+      extension: .generated.tsx
+      baseTypesPath: types.ts
     plugins:
-      - "typescript"
-      - "typescript-operations"
-      - "typescript-react-apollo"
-      # - "typescript-resolvers"
+      - typescript-operations
+      - typescript-react-apollo
+  types/resolversTypes.ts:
+    config:
+      contextType: ../graphql/contexts/clientContext#ClientContext
+    documents: './lib/initApollo.ts'
+    schema:
+      - ./schema.client.graphql
+    plugins:
+      - typescript
+      - typescript-resolvers
