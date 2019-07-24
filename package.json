@@ -2,10 +2,9 @@
   "name": "with-typescript",
   "version": "1.0.0",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "nodemon server.js",
     "build": "next build",
-    "start": "next start",
-    "type-check": "tsc",
+    "start": "node server.js",
     "gen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
@@ -14,6 +13,7 @@
     "apollo-link-context": "^1.0.18",
     "apollo-link-http": "^1.5.15",
     "cookie": "^0.4.0",
+    "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "graphql": "^14.4.2",
     "http-proxy-middleware": "^0.19.1",
@@ -39,6 +39,7 @@
     "@types/node": "^11.13.9",
     "@types/react": "^16.8.15",
     "@types/react-dom": "^16.0.11",
+    "nodemon": "^1.19.1",
     "typescript": "3.5.2"
   },
   "license": "ISC"

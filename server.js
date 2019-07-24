@@ -1,34 +1,46 @@
 const express = require("express");
 const next = require("next");
 const proxyMiddleware = require("http-proxy-middleware");
+require('dotenv').config()
+
+const ENV = process.env.NODE_ENV;
+const DEV = ENV !== 'production';
 
 const proxy = {
-  "/api": {
+  "/graphql": {
     target: "https://api.github.com/graphql",
-    pathRewrite: { "^/api": "" },
+    pathRewrite: { "^/graphql": "" },
     changeOrigin: true
   }
 };
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 
-const app = next({
+const appNext = next({
   dir: ".", // base directory where everything is, could move to src later
   // TODO: get it from the process.env
-  dev: true
+  dev: DEV
 });
 
-const handle = app.getRequestHandler();
+const handle = appNext.getRequestHandler();
 
-app
+const logger = (req, _, next) => {
+  console.log(`Request url is ${req.url}`);
+  next();
+};
+
+const withToken = (req, _, next) => {
+  req.headers['authorization'] =  `Bearer ${process.env.API_TOKEN}`
+  next();
+}
+
+appNext
   .prepare()
   .then(() => {
     const app = express();
 
-    app.use((req, res, next) => {
-      console.log(`Request url is ${req.url}`)
-      next()
-    })
+    app.use(withToken);
+    app.use(logger);
 
     Object.keys(proxy).forEach(context => {
       app.use(proxyMiddleware(context, proxy[context]));

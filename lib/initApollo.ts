@@ -7,7 +7,7 @@ import { setContext } from "apollo-link-context";
 import { createHttpLink } from "apollo-link-http";
 import fetch from "isomorphic-unfetch";
 import { isBrowser } from "./isBrowser";
-import resolvers from '../graphql/resolvers'
+import resolvers from "../graphql/resolvers";
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 
@@ -16,27 +16,14 @@ if (!isBrowser) {
   (global as any).fetch = fetch;
 }
 
-interface Options {
-  getToken: () => string;
-}
-
-function create(initialState: any, { getToken }: Options) {
+function create(initialState: any) {
   const httpLink = createHttpLink({
-    uri: "http://localhost:3000/api",
-    credentials: "include"
+    uri: "/graphql"
   });
 
   const authLink = setContext((_, { headers }) => {
-    const token = getToken();
-
     return {
-      headers: {
-        ...headers,
-        authorization: token ? `Bearer ${token}` : ""
-      },
-      fetchOptions: {
-        credentials: "include"
-      }
+      headers
     };
   });
 
@@ -50,16 +37,16 @@ function create(initialState: any, { getToken }: Options) {
   });
 }
 
-export default function initApollo(initialState: any, options: Options) {
+export default function initApollo(initialState: any) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (!isBrowser) {
-    return create(initialState, options);
+    return create(initialState);
   }
 
   // Reuse client on the client-side
   if (!apolloClient) {
-    apolloClient = create(initialState, options);
+    apolloClient = create(initialState);
   }
 
   return apolloClient;
