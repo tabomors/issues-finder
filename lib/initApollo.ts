@@ -7,7 +7,6 @@ import { setContext } from "apollo-link-context";
 import { createHttpLink } from "apollo-link-http";
 import fetch from "isomorphic-unfetch";
 import { isBrowser } from "./isBrowser";
-import resolvers from "../graphql/resolvers";
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 
@@ -33,7 +32,7 @@ function create(initialState: any) {
     ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
     link: authLink.concat(httpLink),
     cache: new InMemoryCache().restore(initialState || {}),
-    resolvers: resolvers as any
+    resolvers: {}
   });
 }
 

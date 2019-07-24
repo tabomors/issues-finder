@@ -1,16 +1,24 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 
 import Layout from "../components/Layout";
 import { NextPage } from "next";
 import get from "lodash/get";
+import merge from 'lodash/merge';
+import { useApolloClient } from 'react-apollo-hooks';
+
 import { useGetLanguageQuery } from "../graphql/language/getLanguage.generated";
 import { useSetLanguageMutation } from "../graphql/language/setLanguage.generated";
 import { useGetLabelsQuery } from "../graphql/label/getLabels.generated";
 import { useAddLabelMutation } from "../graphql/label/addLabel.generated";
 import { useFindIssuesQuery, FindIssuesQuery } from "../graphql/issue/findIssues.generated";
+import addLabelResolver from '../graphql/label/addLabel.resolver';
+import getLanguageResolver from '../graphql/language/getLanguage.resolver';
+import setLanguageResolver from '../graphql/language/setLanguage.resolver';
 
-const buildQuery = (language: any, labels: any): string => {
+const resolvers = merge(addLabelResolver, getLanguageResolver, setLanguageResolver)
+
+const buildQuery = (language: string, labels: string[]): string => {
   const languageWithPrefix = `language:${language}`;
   const labelsWithPrefix = labels
     .map((label: any) => `label:${label}`)
@@ -19,6 +27,12 @@ const buildQuery = (language: any, labels: any): string => {
 };
 
 const IndexPage: NextPage = () => {
+  const client = useApolloClient();
+  useEffect(() => {
+    console.log('Adding resolvers...');
+    client.addResolvers(resolvers as any);
+  }, [])
+  
   const inputEl = useRef<HTMLInputElement | null>(null);
 
   const { data: language } = useGetLanguageQuery();
@@ -34,7 +48,7 @@ const IndexPage: NextPage = () => {
   const shouldRunQuery = language && labels.length > 0;
 
   const { data, loading, fetchMore } = useFindIssuesQuery({
-    variables: { query: buildQuery(language, labels) },
+    variables: { query: buildQuery(language as string, labels as string[]) },
     notifyOnNetworkStatusChange: true,
     skip: !shouldRunQuery
   });
