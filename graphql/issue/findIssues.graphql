@@ -1,35 +1,35 @@
 fragment IssueContent on Issue {
+  url
+  id
+  body
+  repository {
+    name
     url
-    id
-    body
-    repository {
+  }
+  publishedAt
+  closed
+  labels(first: 10) {
+    totalCount
+    nodes {
       name
-      url
-    }
-    publishedAt
-    closed
-    labels(first: 10) {
-      totalCount
-      nodes {
-        name
-      }
     }
   }
+}
 
-  query findIssues($query: String!, $after: String) {
-    search(type: ISSUE, query: $query, first: 50, after: $after) {
-      pageInfo {
-        hasPreviousPage
-        hasNextPage
-        startCursor
-        endCursor
-      }
-      edges {
-        cursor
-        node {
-          __typename
-          ...IssueContent
-        }
+query findIssues($query: String!, $after: String) {
+  search(type: ISSUE, query: $query, first: 50, after: $after) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    edges {
+      cursor
+      node {
+        __typename
+        ...IssueContent
       }
     }
   }
+}

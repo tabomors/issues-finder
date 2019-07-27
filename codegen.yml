@@ -3,14 +3,14 @@ generates:
   types/types.ts:
     documents: './{lib,graphql}/**/*.graphql'
     schema:
-      - ./schema.public.graphql
+      - ./schema.github.json
       - ./schema.client.graphql
     plugins:
       - typescript
   types/:
     documents: './{lib,graphql}/**/*.graphql'
     schema:
-      - ./schema.public.graphql
+      - ./schema.github.json
       - ./schema.client.graphql
     config:
       noNamespaces: true
@@ -33,3 +33,9 @@ generates:
     plugins:
       - typescript
       - typescript-resolvers
+
+  graphql/introspectionResult.generated.ts:
+    schema:
+      - ./schema.github.json
+    plugins:
+      - fragment-matcher

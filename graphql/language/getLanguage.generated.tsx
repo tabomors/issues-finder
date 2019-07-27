@@ -1,12 +1,12 @@
-import * as Types from "../../types/types";
+import * as Types from '../../types/types';
 
-import gql from "graphql-tag";
-import * as ReactApolloHooks from "react-apollo-hooks";
+import gql from 'graphql-tag';
+import * as ReactApolloHooks from 'react-apollo-hooks';
 export type GetLanguageQueryVariables = {};
 
-export type GetLanguageQuery = { __typename?: "Query" } & Pick<
+export type GetLanguageQuery = { __typename?: 'Query' } & Pick<
   Types.Query,
-  "language"
+  'language'
 >;
 
 export const GetLanguageDocument = gql`

@@ -1,15 +1,15 @@
-import * as Types from "../../types/types";
+import * as Types from '../../types/types';
 
-import gql from "graphql-tag";
-import * as ReactApollo from "react-apollo";
-import * as ReactApolloHooks from "react-apollo-hooks";
+import gql from 'graphql-tag';
+import * as ReactApollo from 'react-apollo';
+import * as ReactApolloHooks from 'react-apollo-hooks';
 export type SetLanguageMutationVariables = {
-  language: Types.Scalars["String"];
+  language: Types.Scalars['String'];
 };
 
-export type SetLanguageMutation = { __typename?: "Mutation" } & Pick<
+export type SetLanguageMutation = { __typename?: 'Mutation' } & Pick<
   Types.Mutation,
-  "setLanguage"
+  'setLanguage'
 >;
 
 export const SetLanguageDocument = gql`

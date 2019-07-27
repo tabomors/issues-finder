@@ -1,12 +1,12 @@
-import * as Types from "../../types/types";
+import * as Types from '../../types/types';
 
-import gql from "graphql-tag";
-import * as ReactApolloHooks from "react-apollo-hooks";
+import gql from 'graphql-tag';
+import * as ReactApolloHooks from 'react-apollo-hooks';
 export type GetLabelsQueryVariables = {};
 
-export type GetLabelsQuery = { __typename?: "Query" } & Pick<
+export type GetLabelsQuery = { __typename?: 'Query' } & Pick<
   Types.Query,
-  "labels"
+  'labels'
 >;
 
 export const GetLabelsDocument = gql`

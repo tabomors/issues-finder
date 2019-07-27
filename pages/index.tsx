@@ -29,7 +29,7 @@ const resolvers = merge(
 const buildQuery = (language: string, labels: string[]): string => {
   const languageWithPrefix = `language:${language}`;
   const labelsWithPrefix = labels.map(label => `label:${label}`).join(' ');
-  return `type:issue ${languageWithPrefix} ${labelsWithPrefix}`;
+  return `${languageWithPrefix} ${labelsWithPrefix}`;
 };
 
 const useFindIssues = () => {

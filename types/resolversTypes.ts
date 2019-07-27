@@ -1,5 +1,5 @@
-import { GraphQLResolveInfo } from "graphql";
-import { ClientContext } from "../graphql/contexts/clientContext";
+import { GraphQLResolveInfo } from 'graphql';
+import { ClientContext } from '../graphql/contexts/clientContext';
 export type Maybe<T> = T | null;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -11,24 +11,24 @@ export type Scalars = {
 };
 
 export type Mutation = {
-  __typename?: "Mutation";
-  addLabel?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  setLanguage?: Maybe<Scalars["String"]>;
+  __typename?: 'Mutation';
+  addLabel?: Maybe<Array<Maybe<Scalars['String']>>>;
+  setLanguage?: Maybe<Scalars['String']>;
 };
 
 export type MutationAddLabelArgs = {
-  label: Scalars["String"];
+  label: Scalars['String'];
 };
 
 export type MutationSetLanguageArgs = {
-  language: Scalars["String"];
+  language: Scalars['String'];
 };
 
 export type Query = {
-  __typename?: "Query";
-  getLanguage?: Maybe<Scalars["String"]>;
-  language?: Maybe<Scalars["String"]>;
-  labels: Array<Maybe<Scalars["String"]>>;
+  __typename?: 'Query';
+  getLanguage?: Maybe<Scalars['String']>;
+  language?: Maybe<Scalars['String']>;
+  labels: Array<Maybe<Scalars['String']>>;
 };
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
@@ -103,31 +103,31 @@ export type DirectiveResolverFn<
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>;
-  String: ResolverTypeWrapper<Scalars["String"]>;
+  String: ResolverTypeWrapper<Scalars['String']>;
   Mutation: ResolverTypeWrapper<{}>;
-  Boolean: ResolverTypeWrapper<Scalars["Boolean"]>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Query: {};
-  String: Scalars["String"];
+  String: Scalars['String'];
   Mutation: {};
-  Boolean: Scalars["Boolean"];
+  Boolean: Scalars['Boolean'];
 };
 
 export type MutationResolvers<
   ContextType = ClientContext,
-  ParentType = ResolversParentTypes["Mutation"]
+  ParentType = ResolversParentTypes['Mutation']
 > = {
   addLabel?: Resolver<
-    Maybe<Array<Maybe<ResolversTypes["String"]>>>,
+    Maybe<Array<Maybe<ResolversTypes['String']>>>,
     ParentType,
     ContextType,
     MutationAddLabelArgs
   >;
   setLanguage?: Resolver<
-    Maybe<ResolversTypes["String"]>,
+    Maybe<ResolversTypes['String']>,
     ParentType,
     ContextType,
     MutationSetLanguageArgs
@@ -136,16 +136,16 @@ export type MutationResolvers<
 
 export type QueryResolvers<
   ContextType = ClientContext,
-  ParentType = ResolversParentTypes["Query"]
+  ParentType = ResolversParentTypes['Query']
 > = {
   getLanguage?: Resolver<
-    Maybe<ResolversTypes["String"]>,
+    Maybe<ResolversTypes['String']>,
     ParentType,
     ContextType
   >;
-  language?: Resolver<Maybe<ResolversTypes["String"]>, ParentType, ContextType>;
+  language?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   labels?: Resolver<
-    Array<Maybe<ResolversTypes["String"]>>,
+    Array<Maybe<ResolversTypes['String']>>,
     ParentType,
     ContextType
   >;

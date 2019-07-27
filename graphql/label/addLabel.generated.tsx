@@ -1,15 +1,15 @@
-import * as Types from "../../types/types";
+import * as Types from '../../types/types';
 
-import gql from "graphql-tag";
-import * as ReactApollo from "react-apollo";
-import * as ReactApolloHooks from "react-apollo-hooks";
+import gql from 'graphql-tag';
+import * as ReactApollo from 'react-apollo';
+import * as ReactApolloHooks from 'react-apollo-hooks';
 export type AddLabelMutationVariables = {
-  label: Types.Scalars["String"];
+  label: Types.Scalars['String'];
 };
 
-export type AddLabelMutation = { __typename?: "Mutation" } & Pick<
+export type AddLabelMutation = { __typename?: 'Mutation' } & Pick<
   Types.Mutation,
-  "addLabel"
+  'addLabel'
 >;
 
 export const AddLabelDocument = gql`

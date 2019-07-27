@@ -1,23 +1,23 @@
-import * as Types from "../../types/types";
+import * as Types from '../../types/types';
 
-import gql from "graphql-tag";
-import * as ReactApolloHooks from "react-apollo-hooks";
-export type IssueContentFragment = { __typename?: "Issue" } & Pick<
+import gql from 'graphql-tag';
+import * as ReactApolloHooks from 'react-apollo-hooks';
+export type IssueContentFragment = { __typename?: 'Issue' } & Pick<
   Types.Issue,
-  "url" | "id" | "body" | "publishedAt" | "closed"
+  'url' | 'id' | 'body' | 'publishedAt' | 'closed'
 > & {
-    repository: { __typename?: "Repository" } & Pick<
+    repository: { __typename?: 'Repository' } & Pick<
       Types.Repository,
-      "name" | "url"
+      'name' | 'url'
     >;
     labels: Types.Maybe<
-      { __typename?: "LabelConnection" } & Pick<
+      { __typename?: 'LabelConnection' } & Pick<
         Types.LabelConnection,
-        "totalCount"
+        'totalCount'
       > & {
           nodes: Types.Maybe<
             Array<
-              Types.Maybe<{ __typename?: "Label" } & Pick<Types.Label, "name">>
+              Types.Maybe<{ __typename?: 'Label' } & Pick<Types.Label, 'name'>>
             >
           >;
         }
@@ -25,22 +25,22 @@ export type IssueContentFragment = { __typename?: "Issue" } & Pick<
   };
 
 export type FindIssuesQueryVariables = {
-  query: Types.Scalars["String"];
-  after?: Types.Maybe<Types.Scalars["String"]>;
+  query: Types.Scalars['String'];
+  after?: Types.Maybe<Types.Scalars['String']>;
 };
 
-export type FindIssuesQuery = { __typename?: "Query" } & {
-  search: { __typename?: "SearchResultItemConnection" } & {
-    pageInfo: { __typename?: "PageInfo" } & Pick<
+export type FindIssuesQuery = { __typename?: 'Query' } & {
+  search: { __typename?: 'SearchResultItemConnection' } & {
+    pageInfo: { __typename?: 'PageInfo' } & Pick<
       Types.PageInfo,
-      "hasPreviousPage" | "hasNextPage" | "startCursor" | "endCursor"
+      'hasPreviousPage' | 'hasNextPage' | 'startCursor' | 'endCursor'
     >;
     edges: Types.Maybe<
       Array<
         Types.Maybe<
-          { __typename?: "SearchResultItemEdge" } & Pick<
+          { __typename?: 'SearchResultItemEdge' } & Pick<
             Types.SearchResultItemEdge,
-            "cursor"
+            'cursor'
           > & { node: Types.Maybe<IssueContentFragment> }
         >
       >

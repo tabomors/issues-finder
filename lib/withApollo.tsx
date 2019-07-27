@@ -1,4 +1,5 @@
-import { ApolloClient, NormalizedCacheObject } from "apollo-boost";
+import { ApolloClient } from 'apollo-client';
+import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 import Head from "next/head";
 import React from "react";
 import initApollo from "./initApollo";
@@ -17,7 +18,7 @@ export default (App: any) => {
         ctx: { req, res }
       } = ctx;
       const apollo = initApollo({});
-      
+
       // Write default data to apollo cache
       apollo.cache.writeData({ data: { language: '', labels: [] } })
 
