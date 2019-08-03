@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import Layout from '../components/Layout';
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 // TODO: Try to use https://github.com/tc39/proposal-optional-chaining
 import get from 'lodash/get';
 import merge from 'lodash/merge';
@@ -32,27 +33,24 @@ const buildQuery = (language: string, labels: string[]): string => {
   return `${languageWithPrefix} ${labelsWithPrefix}`;
 };
 
-const useFindIssues = () => {
+const useFindIssues = (defaultLanguage: string, defaultLabels: string[]) => {
   const client = useApolloClient();
 
   useEffect(() => {
-    console.log('Adding resolvers...');
     client.addResolvers(resolvers as any);
   }, []);
 
-  const { data: language } = useGetLanguageQuery();
+  const { data: languagesData } = useGetLanguageQuery();
+  let language = (languagesData && languagesData.language) || defaultLanguage;
   const [setLanguage] = useSetLanguageMutation();
 
   const { data: labelsData } = useGetLabelsQuery();
-  const labels = (labelsData && labelsData.labels) || [];
+  let labels = (labelsData && labelsData.labels) || [];
+  labels = labels.length ? labels : defaultLabels;
   const [addLabel] = useAddLabelMutation();
 
-  console.log('language', language);
-  console.log('labels', labels);
-
   const shouldRunQuery = language && labels.length > 0;
-
-  const query = buildQuery(language as string, labels as string[]);
+  const query = buildQuery(language, labels as string[]);
   const { fetchMore, ...issuesData } = useFindIssuesQuery({
     variables: { query },
     notifyOnNetworkStatusChange: true,
@@ -84,15 +82,34 @@ const useFindIssues = () => {
   ] as const;
 };
 
+
+const queryStringLabelsToList = (labels: string) => {
+  return labels
+    .split(',')
+    .filter(Boolean)
+    .map((str: string) => str.trim());
+}
+
+interface RouteParams {
+  language?: string;
+  labels?: string;
+}
+
 const IndexPage: NextPage = () => {
   const inputEl = useRef<HTMLInputElement | null>(null);
+  let { query } = useRouter();
+  const {
+    language: defaultLanguage = '',
+    labels: defaultLabels = ''
+  }: RouteParams = query;
+
   const [
     {
       labels,
       issuesData: { loading, data }
     },
     { setLanguage, addLabel, fetchNextIssues }
-  ] = useFindIssues();
+  ] = useFindIssues(defaultLanguage, queryStringLabelsToList(defaultLabels));
 
   const edges = get(data, 'search.edges', []);
 
@@ -108,13 +125,14 @@ const IndexPage: NextPage = () => {
       addLabel({ variables: { label: val } });
       inputEl.current.value = '';
     }
-  }
+  };
 
   return (
     <Layout title="Home | Next.js + TypeScript Example">
       <div>
         <div>
           <select
+            defaultValue={defaultLanguage}
             name="languageSelect"
             id="languageSelect"
             onChange={handleLanguageSelect}
