@@ -96,11 +96,11 @@ interface RouteParams {
 
 const IndexPage: NextPage = () => {
   const inputEl = useRef<HTMLInputElement | null>(null);
-  let { query } = useRouter();
+  const routerData = useRouter();
   const {
     language: defaultLanguage = '',
     labels: defaultLabels = ''
-  }: RouteParams = query;
+  }: RouteParams = routerData ? routerData.query : {};
 
   const [
     {
