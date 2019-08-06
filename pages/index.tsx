@@ -82,13 +82,12 @@ const useFindIssues = (defaultLanguage: string, defaultLabels: string[]) => {
   ] as const;
 };
 
-
 const queryStringLabelsToList = (labels: string) => {
   return labels
     .split(',')
     .filter(Boolean)
     .map((str: string) => str.trim());
-}
+};
 
 interface RouteParams {
   language?: string;
@@ -168,9 +167,14 @@ const IndexPage: NextPage = () => {
             <>
               {edges.map((edge: any) => {
                 return (
-                  <pre key={edge.node.id}>
-                    {JSON.stringify(edge, null, '\t')}
-                  </pre>
+                  <>
+                    <Link href={`/issue/${edge.node.id}`}>
+                      <a>{edge.node.id}</a>
+                    </Link>
+                    <pre key={edge.node.id}>
+                      {JSON.stringify(edge, null, '\t')}
+                    </pre>
+                  </>
                 );
               })}
               {loading && <p>Loading...</p>}

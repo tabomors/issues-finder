@@ -47,6 +47,119 @@ export type FindIssuesQuery = { __typename?: 'Query' } & {
     >;
   };
 };
+
+export type FindOneIssueQueryVariables = {
+  id: Types.Scalars['ID'];
+};
+
+export type FindOneIssueQuery = { __typename?: 'Query' } & {
+  node: Types.Maybe<
+    {
+      __typename?:
+        | 'CodeOfConduct'
+        | 'License'
+        | 'MarketplaceCategory'
+        | 'MarketplaceListing'
+        | 'App'
+        | 'Organization'
+        | 'RegistryPackage'
+        | 'RegistryPackageVersion'
+        | 'RegistryPackageDependency'
+        | 'RegistryPackageFile'
+        | 'Release'
+        | 'User'
+        | 'Project'
+        | 'ProjectColumn'
+        | 'ProjectCard'
+        | 'Issue'
+        | 'UserContentEdit'
+        | 'Label'
+        | 'PullRequest'
+        | 'Reaction'
+        | 'Repository'
+        | 'BranchProtectionRule'
+        | 'Ref'
+        | 'PushAllowance'
+        | 'Team'
+        | 'UserStatus'
+        | 'OrganizationInvitation'
+        | 'ReviewDismissalAllowance'
+        | 'CommitComment'
+        | 'Commit'
+        | 'Deployment'
+        | 'DeploymentStatus'
+        | 'Status'
+        | 'StatusContext'
+        | 'Tree'
+        | 'DeployKey'
+        | 'Language'
+        | 'Milestone'
+        | 'RepositoryTopic'
+        | 'Topic'
+        | 'IssueComment'
+        | 'PullRequestCommit'
+        | 'ReviewRequest'
+        | 'Mannequin'
+        | 'PullRequestReviewThread'
+        | 'PullRequestReviewComment'
+        | 'PullRequestReview'
+        | 'CommitCommentThread'
+        | 'ClosedEvent'
+        | 'ReopenedEvent'
+        | 'SubscribedEvent'
+        | 'UnsubscribedEvent'
+        | 'MergedEvent'
+        | 'ReferencedEvent'
+        | 'CrossReferencedEvent'
+        | 'AssignedEvent'
+        | 'Bot'
+        | 'UnassignedEvent'
+        | 'LabeledEvent'
+        | 'UnlabeledEvent'
+        | 'MilestonedEvent'
+        | 'DemilestonedEvent'
+        | 'RenamedTitleEvent'
+        | 'LockedEvent'
+        | 'UnlockedEvent'
+        | 'DeployedEvent'
+        | 'DeploymentEnvironmentChangedEvent'
+        | 'HeadRefDeletedEvent'
+        | 'HeadRefRestoredEvent'
+        | 'HeadRefForcePushedEvent'
+        | 'BaseRefForcePushedEvent'
+        | 'ReviewRequestedEvent'
+        | 'ReviewRequestRemovedEvent'
+        | 'ReviewDismissedEvent'
+        | 'UserBlockedEvent'
+        | 'PullRequestCommitCommentThread'
+        | 'BaseRefChangedEvent'
+        | 'ReadyForReviewEvent'
+        | 'AddedToProjectEvent'
+        | 'CommentDeletedEvent'
+        | 'ConvertedNoteToIssueEvent'
+        | 'MentionedEvent'
+        | 'MovedColumnsInProjectEvent'
+        | 'PinnedEvent'
+        | 'RemovedFromProjectEvent'
+        | 'TransferredEvent'
+        | 'UnpinnedEvent'
+        | 'Gist'
+        | 'GistComment'
+        | 'Sponsorship'
+        | 'PublicKey'
+        | 'SavedReply'
+        | 'ReleaseAsset'
+        | 'RegistryPackageTag'
+        | 'OrganizationIdentityProvider'
+        | 'ExternalIdentity'
+        | 'SecurityAdvisory'
+        | 'SponsorsListing'
+        | 'Blob'
+        | 'RepositoryInvitation'
+        | 'Tag';
+    } & IssueContentFragment
+  >;
+};
 export const IssueContentFragmentDoc = gql`
   fragment IssueContent on Issue {
     url
@@ -94,4 +207,21 @@ export function useFindIssuesQuery(
     FindIssuesDocument,
     baseOptions
   );
+}
+export const FindOneIssueDocument = gql`
+  query findOneIssue($id: ID!) {
+    node(id: $id) {
+      ...IssueContent
+    }
+  }
+  ${IssueContentFragmentDoc}
+`;
+
+export function useFindOneIssueQuery(
+  baseOptions?: ReactApolloHooks.QueryHookOptions<FindOneIssueQueryVariables>
+) {
+  return ReactApolloHooks.useQuery<
+    FindOneIssueQuery,
+    FindOneIssueQueryVariables
+  >(FindOneIssueDocument, baseOptions);
 }

@@ -33,3 +33,10 @@ query findIssues($query: String!, $after: String) {
     }
   }
 }
+
+query findOneIssue($id: ID!) {
+  node(id: $id) {
+    __typename
+    ...IssueContent
+  }
+}
