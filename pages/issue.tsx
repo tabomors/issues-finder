@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NextPage } from 'next';
-import Layout from '../../components/Layout';
-import { useFindOneIssueQuery } from '../../graphql/issue/findIssues.generated';
+import Layout from '../components/Layout';
+import { useFindOneIssueQuery } from '../graphql/issue/findIssues.generated';
 import { useRouter } from 'next/router';
 
 const IssuePage: NextPage = () => {

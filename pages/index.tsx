@@ -168,7 +168,10 @@ const IndexPage: NextPage = () => {
               {edges.map((edge: any) => {
                 return (
                   <>
-                    <Link href={`/issue/${edge.node.id}`}>
+                    <Link
+                      href={`/issue?id=${edge.node.id}`}
+                      as={`/issue/${edge.node.id}`}
+                    >
                       <a>{edge.node.id}</a>
                     </Link>
                     <pre key={edge.node.id}>

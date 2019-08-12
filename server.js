@@ -46,6 +46,12 @@ appNext
       app.use(proxyMiddleware(context, proxy[context]));
     });
 
+    app.get('/issue/:id', (req, res) => {
+      return appNext.render(req, res, '/issue', {
+        id: req.params.id
+      });
+    });
+
     // Default catch-all handler to allow Next.js to handle all other routes
     app.all('*', (req, res) => handle(req, res));
 
