@@ -5,7 +5,7 @@ import React from "react";
 import initApollo from "./initApollo";
 import { isBrowser } from "./isBrowser";
 import { renderToString } from "react-dom/server";
-import { getMarkupFromTree } from "react-apollo-hooks";
+import { getMarkupFromTree } from "@apollo/react-ssr";
 
 export default (App: any) => {
   return class WithData extends React.Component {

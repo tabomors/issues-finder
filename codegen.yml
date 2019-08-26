@@ -27,7 +27,6 @@ generates:
   types/resolversTypes.ts:
     config:
       contextType: ../graphql/contexts/clientContext#ClientContext
-    documents: './lib/initApollo.ts'
     schema:
       - ./schema.client.graphql
     plugins:

@@ -5,10 +5,10 @@ import { useFindOneIssueQuery } from '../graphql/issue/findIssues.generated';
 import { useRouter } from 'next/router';
 
 const IssuePage: NextPage = () => {
-  const {
+  let {
     query: { id }
   } = useRouter();
-
+  id = typeof id === 'string' ? id : id[0];
   const { data, loading } = useFindOneIssueQuery({
     skip: !id,
     variables: { id }

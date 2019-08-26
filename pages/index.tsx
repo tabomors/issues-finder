@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 // TODO: Try to use https://github.com/tc39/proposal-optional-chaining
 import get from 'lodash/get';
 import merge from 'lodash/merge';
-import { useApolloClient } from 'react-apollo-hooks';
+import { useApolloClient } from '@apollo/react-hooks';
 
 import { useGetLanguageQuery } from '../graphql/language/getLanguage.generated';
 import { useSetLanguageMutation } from '../graphql/language/setLanguage.generated';
@@ -61,11 +61,11 @@ const useFindIssues = (defaultLanguage: string, defaultLabels: string[]) => {
     fetchMore({
       variables: {
         query,
-        after: get(issuesData.data, 'search.pageInfo.endCursor', null)
+        after: get(issuesData.data, 'search.pageInfo.endCursor', '') as string
       },
+
       updateQuery: (prev, { fetchMoreResult }): FindIssuesQuery => {
         if (!fetchMoreResult) return prev;
-
         const prevEdges = get(prev, 'search.edges', []);
         const nextEdges = get(fetchMoreResult, 'search.edges', []);
 
