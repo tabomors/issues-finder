@@ -83,10 +83,11 @@ const useFindIssues = (defaultLanguage: string, defaultLabels: string[]) => {
 };
 
 const queryStringLabelsToList = (labels: string) => {
-  return labels
+  const parsedLabels = decodeURIComponent(labels)
     .split(',')
     .filter(Boolean)
     .map((str: string) => str.trim());
+  return parsedLabels;
 };
 
 interface RouteParams {
@@ -96,11 +97,11 @@ interface RouteParams {
 
 const IndexPage: NextPage = () => {
   const inputEl = useRef<HTMLInputElement | null>(null);
-  const routerData = useRouter();
+  const router = useRouter();
   const {
     language: defaultLanguage = '',
     labels: defaultLabels = ''
-  }: RouteParams = routerData ? routerData.query : {};
+  }: RouteParams = router ? router.query : {};
 
   const [
     {
@@ -115,6 +116,11 @@ const IndexPage: NextPage = () => {
   const handleLanguageSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const language = e.target.value;
     setLanguage({ variables: { language } });
+    const href = {
+      pathname: router.pathname,
+      query: { ...router.query, language }
+    };
+    router.push(href, href);
   };
 
   const handleAddLabel = () => {
@@ -122,6 +128,14 @@ const IndexPage: NextPage = () => {
     const val = inputEl.current.value;
     if (val) {
       addLabel({ variables: { label: val } });
+      const updatedLabels = router.query.labels
+        ? `${router.query.labels},${val}`
+        : val;
+      const href = {
+        pathname: router.pathname,
+        query: { ...router.query, labels: updatedLabels }
+      };
+      router.push(href, href);
       inputEl.current.value = '';
     }
   };
