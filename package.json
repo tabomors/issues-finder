@@ -4,8 +4,13 @@
   "scripts": {
     "dev": "nodemon server.js",
     "build": "next build",
-    "start": "node server.js",
-    "gen": "graphql-codegen --config codegen.yml"
+    "start": "NODE_ENV=production node server.js",
+    "gen": "graphql-codegen --config codegen.yml",
+    "test": "jest",
+    "docker:build": "docker build -t tabomors/issues-finder:latest .",
+    "docker:login": "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD",
+    "docker:push": "docker push tabomors/issues-finder:latest",
+    "ci:docker": "npm run docker:build && npm run docker:login && npm run docker:push"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.0.1",
@@ -39,9 +44,12 @@
     "@graphql-codegen/typescript-react-apollo": "^1.6.1",
     "@graphql-codegen/typescript-resolvers": "^1.6.1",
     "@types/graphql": "^14.5.0",
+    "@types/jest": "^24.0.18",
     "@types/node": "^12.7.2",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
     "nodemon": "^1.19.1",
     "tslint": "^5.19.0",
     "tslint-react-hooks": "^2.2.1",
