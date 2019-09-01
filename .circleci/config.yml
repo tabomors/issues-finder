@@ -46,6 +46,7 @@ jobs:
       - run: npm run ci:docker
 
 workflows:
+  version: 2
   build_test_push_to_dh:
     jobs:
       - build
