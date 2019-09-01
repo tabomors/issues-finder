@@ -66,5 +66,5 @@ workflows:
             - test
           filters:
             branches:
-              # TODO: change to master when it is working
-              only: ci
+              # Push to docker hub only if it is master
+              only: master
