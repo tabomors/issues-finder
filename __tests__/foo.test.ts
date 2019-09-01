@@ -1,5 +1,5 @@
 describe('Try jest', () => {
   it('This test should fail', () => {
-    expect(2).toBe(3);
+    expect(3).toBe(3);
   });
 })

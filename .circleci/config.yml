@@ -15,7 +15,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: npm install
+      - run: npm ci
 
       - save_cache:
           paths:
@@ -23,3 +23,14 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: npm test
+
+      - run:
+          name: Install Docker client
+          command: |
+            set -x
+            VER="19.03.1-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
+
+      - run: npm run ci:docker

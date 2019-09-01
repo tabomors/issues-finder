@@ -6,7 +6,11 @@
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "gen": "graphql-codegen --config codegen.yml",
-    "test": "jest"
+    "test": "jest",
+    "docker:build": "docker build -t tabomors/issues-finder:latest .",
+    "docker:login": "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD",
+    "docker:push": "docker push tabomors/issues-finder:latest",
+    "ci:docker": "npm run docker:build && npm run docker:login && npm run docker:push"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.0.1",
