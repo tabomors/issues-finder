@@ -1,11 +1,23 @@
+[![CircleCI](https://circleci.com/gh/tabomors/issues-finder-ts-next-apollo/tree/master.svg?style=svg)](https://circleci.com/gh/tabomors/issues-finder-ts-next-apollo/tree/master)
+
 # POC of app for searching github issues by label and language
 
-I created this project in Next.js + Typescript + Apollo + code generation just because i will use these technologies on the next project. So i think it is overkill to use these techs for this app but it is what is
+This app can help you find issue by label and language.
 
-Planning to finish my work asap, but you can try it in development mode using `npm run dev`
+It may be useful if you want to start contributing to open source, but can't find any simple issues.
 
-## Docker (temporary reminder)
+For example you can choose `Javascript` lang and `good-first-issue` label and it will show you a list of issues.
 
-* `docker build -t tabomors/issues-finder .`
-* `docker run -p 3333:3000 tabomors/issues-finder`
+# Motivation
+
+1) I created it for myself in order to find issues to contribute
+2) I created this project with modern stack because i will use this stack on the next project at work. So in general i think it is overkill to use these technologies for this tiny app
+
+Stack:
+* TypeScript
+* Next.js
+* Apollo
+* Code generation for graphql
+* Docker
+* CircleCI
 
