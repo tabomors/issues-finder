@@ -1,5 +1,13 @@
 {
-  "name": "with-typescript",
+  "name": "issues-finder",
+  "author": {
+    "email": "stas.morozevich@gmail.com",
+    "name": "Stanislav Morozevich"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tabomors/issues-finder.git"
+  },
   "version": "1.0.0",
   "scripts": {
     "dev": "nodemon server.js",
