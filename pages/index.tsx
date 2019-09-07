@@ -58,20 +58,26 @@ const useFindIssues = (defaultLanguage: string, defaultLabels: string[]) => {
   });
 
   const fetchNextIssues = () => {
+    const endCursor = get(
+      issuesData.data,
+      'search.pageInfo.endCursor',
+      ''
+    ) as string;
     fetchMore({
       variables: {
         query,
-        after: get(issuesData.data, 'search.pageInfo.endCursor', '') as string
+        after: endCursor
       },
-
       updateQuery: (prev, { fetchMoreResult }): FindIssuesQuery => {
         if (!fetchMoreResult) return prev;
         const prevEdges = get(prev, 'search.edges', []);
-        const nextEdges = get(fetchMoreResult, 'search.edges', []);
 
-        const prevCopy = { ...prev };
-        prevCopy.search.edges = [...prevEdges, ...nextEdges];
-        return prevCopy;
+        fetchMoreResult.search.edges = [
+          ...prevEdges,
+          ...fetchMoreResult.search.edges || []
+        ];
+
+        return fetchMoreResult;
       }
     });
   };
@@ -141,7 +147,7 @@ const IndexPage: NextPage = () => {
   };
 
   return (
-    <Layout title="Home | Next.js + TypeScript Example">
+    <Layout title="Issues finder">
       <div>
         <div>
           <select
@@ -172,38 +178,29 @@ const IndexPage: NextPage = () => {
             </button>
           </div>
         </div>
-        {(() => {
-          if (loading && edges.length === 0) {
-            return <p>Loading...</p>;
-          }
-
-          return (
-            <>
-              {edges.map((edge: any) => {
-                return (
-                  <>
-                    <Link
-                      href={`/issue?id=${edge.node.id}`}
-                      as={`/issue/${edge.node.id}`}
-                    >
-                      <a>{edge.node.id}</a>
-                    </Link>
-                    <pre key={edge.node.id}>
-                      {JSON.stringify(edge, null, '\t')}
-                    </pre>
-                  </>
-                );
-              })}
-              {loading && <p>Loading...</p>}
-            </>
-          );
-        })()}
+        {loading && edges.length === 0 ? <p>Loading...</p> : null}
+        <ul>
+          {edges.map((edge: any) => {
+            return (
+              <li key={edge.node.id}>
+                <Link
+                  href={`/issue?id=${edge.node.id}`}
+                  as={`/issue/${edge.node.id}`}
+                >
+                  <a>{edge.node.id}</a>
+                </Link>
+                <pre>{JSON.stringify(edge, null, '\t')}</pre>
+              </li>
+            );
+          })}
+        </ul>
+        {loading && edges.length > 0 ? <p>Loading...</p> : null}
         <button
           disabled={!edges.length}
           type="submit"
           onClick={fetchNextIssues}
         >
-          Fetch more
+          Fetch {edges.length > 0 ? 'more' : ''}
         </button>
       </div>
     </Layout>
