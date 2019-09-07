@@ -57,14 +57,14 @@ workflows:
     jobs:
       - build
 
-      - test:
-          requires:
-            - build
+      # - test:
+      #     requires:
+      #       - build
 
-      - push_to_dh:
-          requires:
-            - test
-          filters:
-            branches:
-              # Push to docker hub only if it is master
-              only: master
+      # - push_to_dh:
+      #     requires:
+      #       - test
+      #     filters:
+      #       branches:
+      #         # Push to docker hub only if it is master
+      #         only: master
