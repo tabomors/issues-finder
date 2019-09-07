@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/tabomors/issues-finder-ts-next-apollo/tree/master.svg?style=svg)](https://circleci.com/gh/tabomors/issues-finder-ts-next-apollo/tree/master)
+[![CircleCI](https://circleci.com/gh/tabomors/issues-finder.svg?style=svg)](https://circleci.com/gh/tabomors/issues-finder)
 
 # POC of app for searching github issues by label and language
 
