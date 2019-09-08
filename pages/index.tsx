@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 
-import Layout from '../components/Layout';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 // TODO: Try to use https://github.com/tc39/proposal-optional-chaining
@@ -9,6 +8,8 @@ import get from 'lodash/get';
 import merge from 'lodash/merge';
 import { useApolloClient } from '@apollo/react-hooks';
 
+import Layout from '../components/Layout';
+import { withApollo } from '../lib/withApollo';
 import { useGetLanguageQuery } from '../graphql/language/getLanguage.generated';
 import { useSetLanguageMutation } from '../graphql/language/setLanguage.generated';
 import { useGetLabelsQuery } from '../graphql/label/getLabels.generated';
@@ -207,4 +208,4 @@ const IndexPage: NextPage = () => {
   );
 };
 
-export default IndexPage;
+export default withApollo(IndexPage);
