@@ -42,7 +42,7 @@
     "react": "16.9.0",
     "react-apollo": "^3.0.1",
     "react-dom": "16.9.0",
-    "dotenv-webpack": "^1.7.0"
+    "dotenv-webpack": "1.5.7"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.6.1",
