@@ -45,6 +45,7 @@
     "dotenv-webpack": "1.5.7"
   },
   "devDependencies": {
+    "@babel/register": "^7.6.0",
     "@graphql-codegen/cli": "^1.6.1",
     "@graphql-codegen/fragment-matcher": "^1.6.1",
     "@graphql-codegen/near-operation-file-preset": "^1.6.1",
