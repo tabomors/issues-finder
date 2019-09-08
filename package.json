@@ -41,9 +41,7 @@
     "next": "9.0.5",
     "react": "16.9.0",
     "react-apollo": "^3.0.1",
-    "react-dom": "16.9.0",
-    "dotenv-webpack": "1.5.7",
-    "@babel/register": "^7.6.0"
+    "react-dom": "16.9.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.6.1",

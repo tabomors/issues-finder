@@ -158,7 +158,7 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
  * Creates and configures the ApolloClient
  */
 function createApolloClient(initialState = {}) {
-  const gqlEndpoint = `${process.env.SERVER}/graphql`;
+  const gqlEndpoint = `${process.env.SERVER_URL}/graphql`;
 
   const httpLink = new HttpLink({
     uri: gqlEndpoint, // Server URL (must be absolute)
