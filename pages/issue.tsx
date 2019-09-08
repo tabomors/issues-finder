@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
+
 import Layout from '../components/Layout';
 import { useFindOneIssueQuery } from '../graphql/issue/findIssues.generated';
-import { useRouter } from 'next/router';
+import { withApollo } from '../lib/withApollo';
 
 const IssuePage: NextPage = () => {
   let {
@@ -24,4 +26,4 @@ const IssuePage: NextPage = () => {
   );
 };
 
-export default IssuePage;
+export default withApollo(IssuePage);
