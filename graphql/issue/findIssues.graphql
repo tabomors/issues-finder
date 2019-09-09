@@ -1,4 +1,5 @@
 fragment IssueContent on Issue {
+  state
   url
   id
   body
@@ -12,6 +13,7 @@ fragment IssueContent on Issue {
     totalCount
     nodes {
       name
+      color
     }
   }
 }

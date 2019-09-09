@@ -75,7 +75,7 @@ const useFindIssues = (defaultLanguage: string, defaultLabels: string[]) => {
 
         fetchMoreResult.search.edges = [
           ...prevEdges,
-          ...fetchMoreResult.search.edges || []
+          ...(fetchMoreResult.search.edges || [])
         ];
 
         return fetchMoreResult;
@@ -150,7 +150,7 @@ const IndexPage: NextPage = () => {
 
   return (
     <Layout title="Issues finder" nav={[{ href: '/', label: 'Clear all' }]}>
-      <div>
+      <>
         <div>
           <select
             value={updatedLanguage}
@@ -204,7 +204,7 @@ const IndexPage: NextPage = () => {
         >
           Fetch {edges.length > 0 ? 'more' : ''}
         </button>
-      </div>
+      </>
     </Layout>
   );
 };

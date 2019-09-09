@@ -18,7 +18,8 @@
     "docker:build": "docker build -t tabomors/issues-finder:latest .",
     "docker:login": "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD",
     "docker:push": "docker push tabomors/issues-finder:latest",
-    "ci:docker": "npm run docker:build && npm run docker:login && npm run docker:push"
+    "ci:docker": "npm run docker:build && npm run docker:login && npm run docker:push",
+    "format:staged": "pretty-quick --staged"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.0.1",
@@ -44,6 +45,7 @@
     "react-dom": "16.9.0"
   },
   "devDependencies": {
+    "@arkweid/lefthook": "^0.6.3",
     "@graphql-codegen/cli": "^1.6.1",
     "@graphql-codegen/fragment-matcher": "^1.6.1",
     "@graphql-codegen/near-operation-file-preset": "^1.6.1",
@@ -59,6 +61,7 @@
     "babel-jest": "^24.9.0",
     "jest": "^24.9.0",
     "nodemon": "^1.19.1",
+    "pretty-quick": "^1.11.1",
     "tslint": "^5.19.0",
     "tslint-react-hooks": "^2.2.1",
     "typescript": "3.5.3",
