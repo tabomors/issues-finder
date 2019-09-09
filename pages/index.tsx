@@ -112,6 +112,7 @@ const IndexPage: NextPage = () => {
 
   const [
     {
+      language: updatedLanguage,
       labels,
       issuesData: { loading, data }
     },
@@ -148,11 +149,11 @@ const IndexPage: NextPage = () => {
   };
 
   return (
-    <Layout title="Issues finder">
+    <Layout title="Issues finder" nav={[{ href: '/', label: 'Clear all' }]}>
       <div>
         <div>
           <select
-            defaultValue={defaultLanguage}
+            value={updatedLanguage}
             name="languageSelect"
             id="languageSelect"
             onChange={handleLanguageSelect}

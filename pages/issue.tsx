@@ -17,7 +17,7 @@ const IssuePage: NextPage = () => {
   });
 
   return (
-    <Layout title="Issue">
+    <Layout title="Issue" nav={[{href: '/', label: 'Home'}]}>
       {(() => {
         if (loading) return <p>Loading...</p>;
         return data ? JSON.stringify(data, null, '\t') : <p>No such issue</p>;
