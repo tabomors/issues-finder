@@ -1,14 +1,15 @@
 import React, { useEffect, useRef } from 'react';
-import Link from 'next/link';
 
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 // TODO: Try to use https://github.com/tc39/proposal-optional-chaining
 import get from 'lodash/get';
 import merge from 'lodash/merge';
+import pick from 'lodash/pick';
 import { useApolloClient } from '@apollo/react-hooks';
 
 import Layout from '../components/Layout';
+import { IssueItem } from '../components/Issue';
 import { withApollo } from '../lib/withApollo';
 import { useGetLanguageQuery } from '../graphql/language/getLanguage.generated';
 import { useSetLanguageMutation } from '../graphql/language/setLanguage.generated';
@@ -75,7 +76,7 @@ const useFindIssues = (defaultLanguage: string, defaultLabels: string[]) => {
 
         fetchMoreResult.search.edges = [
           ...prevEdges,
-          ...fetchMoreResult.search.edges || []
+          ...(fetchMoreResult.search.edges || [])
         ];
 
         return fetchMoreResult;
@@ -112,6 +113,7 @@ const IndexPage: NextPage = () => {
 
   const [
     {
+      language: updatedLanguage,
       labels,
       issuesData: { loading, data }
     },
@@ -148,61 +150,87 @@ const IndexPage: NextPage = () => {
   };
 
   return (
-    <Layout title="Issues finder">
+    <Layout title="Issues finder" nav={[{ href: '/', label: 'Clear all' }]}>
+      <style jsx>
+        {`
+          .controls-container {
+            display: flex;
+            align-items: center;
+          }
+
+          .labels-container {
+            flex: 1;
+          }
+
+          .labels-list {
+            padding-left: 15px;
+            list-style-type: circle;
+          }
+
+          .fetch-more-container {
+            text-align: center;
+          }
+        `}
+      </style>
       <div>
-        <div>
+        <div className="controls-container">
+          <div className="labels-container">
+            <strong>Labels:</strong>
+
+            {labels.length > 0 && (
+              <ul className="labels-list">
+                {labels.map((label, i) => (
+                  <li key={i}>{label}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+
           <select
-            defaultValue={defaultLanguage}
+            value={updatedLanguage}
             name="languageSelect"
             id="languageSelect"
+            className="language-select"
             onChange={handleLanguageSelect}
           >
             <option value="">Choose your language</option>
             <option value="javascript">JavaScript</option>
             <option value="java">Java</option>
           </select>
-
-          <div>
-            <p>Labels:</p>
-
-            {labels.length > 0 && (
-              <ul>
-                {labels.map((label, i) => (
-                  <li key={i}>{label}</li>
-                ))}
-              </ul>
-            )}
-
-            <input ref={inputEl} type="text" placeholder="Label" />
-            <button type="button" onClick={handleAddLabel}>
-              Add label
-            </button>
-          </div>
         </div>
-        {loading && edges.length === 0 ? <p>Loading...</p> : null}
-        <ul>
-          {edges.map((edge: any) => {
-            return (
-              <li key={edge.node.id}>
-                <Link
-                  href={`/issue?id=${edge.node.id}`}
-                  as={`/issue/${edge.node.id}`}
-                >
-                  <a>{edge.node.id}</a>
-                </Link>
-                <pre>{JSON.stringify(edge, null, '\t')}</pre>
-              </li>
-            );
-          })}
-        </ul>
-        {loading && edges.length > 0 ? <p>Loading...</p> : null}
-        <button
-          disabled={!edges.length}
-          type="submit"
-          onClick={fetchNextIssues}
-        >
-          Fetch {edges.length > 0 ? 'more' : ''}
+        <input ref={inputEl} type="text" placeholder="Label" />
+        <button type="button" onClick={handleAddLabel}>
+          Add label
         </button>
+      </div>
+      {loading && edges.length === 0 ? <p>Loading...</p> : null}
+      <ul>
+        {edges.map((edge: any) => {
+          return (
+            <li key={edge.node.id}>
+              <IssueItem
+                {...pick(edge.node, [
+                  'state',
+                  'url',
+                  'body',
+                  'publishedAt',
+                  'repository',
+                  'id'
+                ])}
+                labels={get(edge.node, 'labels.nodes', [])}
+              />
+            </li>
+          );
+        })}
+      </ul>
+      {loading && edges.length > 0 ? <p>Loading...</p> : null}
+
+      <div className="fetch-more-container">
+        {edges.length > 0 && (
+          <button type="button" onClick={fetchNextIssues}>
+            Fetch {edges.length > 0 ? 'more' : ''}
+          </button>
+        )}
       </div>
     </Layout>
   );
