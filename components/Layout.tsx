@@ -19,6 +19,12 @@ const Layout: React.FunctionComponent<Props> = ({
     <footer>
       Created by <a href="https://github.com/tabomors">tabomors</a> @{' '}
       {new Date().getFullYear()}
+      <style jsx>{`
+        footer {
+          padding: 10px 0;
+          text-align: center;
+        }
+      `}</style>
     </footer>
   </div>
 );

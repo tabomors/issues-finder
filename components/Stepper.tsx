@@ -1,11 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import UIStepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-
-import { Select } from './Select';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,32 +23,36 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function getSteps() {
-  return ['Select issue language', 'Select issue labels'];
+interface IStepperRenderProps {
+  activeStep: number;
+  handleNext: () => void;
+  handleBack: () => void;
+  classes: ReturnType<typeof useStyles>;
 }
 
 interface IStepperProps {
-  name?: string;
-  updatedLanguage: string;
-  handleLanguageSelect: any;
+  steps: string[];
+  children: (props: IStepperRenderProps) => JSX.Element | null;
 }
 
-export const Stepper: React.FC<IStepperProps> = ({
-  updatedLanguage,
-  handleLanguageSelect,
-  children
-}) => {
-  const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const steps = getSteps();
+const useSteps = (defaultStep = 0) => {
+  const [activeStep, setActiveStep] = useState(defaultStep);
 
-  function handleNext() {
+  const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
-  }
+  };
 
-  function handleBack() {
+  const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
-  }
+  };
+
+  return { activeStep, handleNext, handleBack };
+};
+
+export const Stepper: React.FC<IStepperProps> = ({ steps, children }) => {
+  const classes = useStyles();
+
+  const { activeStep, handleNext, handleBack } = useSteps(0);
 
   return (
     <div className={classes.root}>
@@ -64,32 +65,12 @@ export const Stepper: React.FC<IStepperProps> = ({
           );
         })}
       </UIStepper>
-      {activeStep === 0 && (
-        <Select
-          updatedLanguage={updatedLanguage}
-          handleLanguageSelect={handleLanguageSelect}
-        />
-      )}
-      <div className={classes.buttonGroup}>
-        <Button disabled={activeStep === 0} onClick={handleBack}>
-          Back
-        </Button>
-        {activeStep === 0 && (
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleNext}
-            disabled={!updatedLanguage}
-          >
-            Next
-          </Button>
-        )}
-      </div>
-      {activeStep !== 0 && <>{children}</>}
+      {children({
+        activeStep,
+        handleNext,
+        handleBack,
+        classes
+      })}
     </div>
   );
-};
-
-Stepper.defaultProps = {
-  updatedLanguage: ''
 };
