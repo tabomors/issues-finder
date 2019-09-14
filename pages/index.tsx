@@ -12,6 +12,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Input from '@material-ui/core/Input';
 
+import Layout from '../components/Layout';
 import { IssueItem } from '../components/Issue';
 import { withApollo } from '../lib/withApollo';
 import { useGetLanguageQuery } from '../graphql/language/getLanguage.generated';
@@ -191,7 +192,7 @@ const IndexPage: NextPage = () => {
   };
 
   return (
-    <>
+    <Layout title="Issues finder">
       <Stepper
         handleLanguageSelect={handleLanguageSelect}
         updatedLanguage={updatedLanguage}
@@ -258,7 +259,7 @@ const IndexPage: NextPage = () => {
           </Button>
         )}
       </Stepper>
-    </>
+    </Layout>
   );
 };
 
