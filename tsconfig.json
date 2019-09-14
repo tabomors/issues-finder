@@ -6,10 +6,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "lib": [
-      "dom",
-      "es2017"
-    ],
+    "lib": ["dom", "es2017"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
@@ -32,6 +29,8 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "server.js"
+    "server.js",
+    "pages/_app.js",
+    "pages/_document.js"
   ]
 }

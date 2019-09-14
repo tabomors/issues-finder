@@ -4,10 +4,10 @@ import { useRouter } from 'next/router';
 import pick from 'lodash/pick';
 import get from 'lodash/get';
 
-import Layout from '../components/Layout';
 import { useFindOneIssueQuery } from '../graphql/issue/findIssues.generated';
 import { withApollo } from '../lib/withApollo';
 import { IssueItem } from '../components/Issue';
+import Layout from '../components/Layout';
 
 const IssuePage: NextPage = () => {
   let {
@@ -20,7 +20,7 @@ const IssuePage: NextPage = () => {
   });
 
   return (
-    <Layout title="Issue" nav={[{ href: '/', label: 'Home' }]}>
+    <Layout title="Issue">
       {loading && <p>Loading...</p>}
       {data && (
         <IssueItem
