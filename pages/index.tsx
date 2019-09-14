@@ -1,14 +1,17 @@
 import React, { useEffect, useRef } from 'react';
-
+import Link from 'next/link';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-// TODO: Try to use https://github.com/tc39/proposal-optional-chaining
-import get from 'lodash/get';
+import get from 'lodash/get'; // TODO: Try to use https://github.com/tc39/proposal-optional-chaining
 import merge from 'lodash/merge';
 import pick from 'lodash/pick';
 import { useApolloClient } from '@apollo/react-hooks';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Input from '@material-ui/core/Input';
 
-import Layout from '../components/Layout';
 import { IssueItem } from '../components/Issue';
 import { withApollo } from '../lib/withApollo';
 import { useGetLanguageQuery } from '../graphql/language/getLanguage.generated';
@@ -22,12 +25,49 @@ import {
 import addLabelResolver from '../graphql/label/addLabel.resolver';
 import getLanguageResolver from '../graphql/language/getLanguage.resolver';
 import setLanguageResolver from '../graphql/language/setLanguage.resolver';
+import { Stepper } from '../components/Stepper';
 
 const resolvers = merge(
   addLabelResolver,
   getLanguageResolver,
   setLanguageResolver
 );
+
+const useStyles = makeStyles(theme => ({
+  input: {
+    width: '100%',
+    padding: 40,
+    marginTop: 100
+  },
+  labels: {
+    marginTop: 20,
+    marginLeft: 20
+  },
+  issue: {
+    marginTop: 20
+  },
+  labelList: {
+    display: 'inline-flex',
+    padding: 0
+  },
+  label: {
+    backgroundColor: '#556CD6',
+    marginLeft: 15,
+    borderRadius: 15,
+    padding: '5px 15px',
+    color: 'white',
+    listStyleType: 'none'
+  },
+  inputLabelControls: {
+    marginTop: 20
+  },
+  clearButton: {
+    marginLeft: 10
+  },
+  issuesContainer: {
+    marginTop: 50
+  }
+}));
 
 const buildQuery = (language: string, labels: string[]): string => {
   const languageWithPrefix = `language:${language}`;
@@ -104,6 +144,7 @@ interface RouteParams {
 }
 
 const IndexPage: NextPage = () => {
+  const classes = useStyles();
   const inputEl = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
   const {
@@ -122,7 +163,7 @@ const IndexPage: NextPage = () => {
 
   const edges = get(data, 'search.edges', []);
 
-  const handleLanguageSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleLanguageSelect = (e: any) => {
     const language = e.target.value;
     setLanguage({ variables: { language } });
     const href = {
@@ -150,89 +191,74 @@ const IndexPage: NextPage = () => {
   };
 
   return (
-    <Layout title="Issues finder" nav={[{ href: '/', label: 'Clear all' }]}>
-      <style jsx>
-        {`
-          .controls-container {
-            display: flex;
-            align-items: center;
-          }
-
-          .labels-container {
-            flex: 1;
-          }
-
-          .labels-list {
-            padding-left: 15px;
-            list-style-type: circle;
-          }
-
-          .fetch-more-container {
-            text-align: center;
-          }
-        `}
-      </style>
-      <div>
-        <div className="controls-container">
-          <div className="labels-container">
-            <strong>Labels:</strong>
-
-            {labels.length > 0 && (
-              <ul className="labels-list">
-                {labels.map((label, i) => (
-                  <li key={i}>{label}</li>
-                ))}
-              </ul>
-            )}
+    <>
+      <Stepper
+        handleLanguageSelect={handleLanguageSelect}
+        updatedLanguage={updatedLanguage}
+      >
+        <div className={classes.labels}>
+          <span>Labels:</span>
+          {labels.length > 0 && (
+            <ul className={classes.labelList}>
+              {labels.map((label, i) => (
+                <li key={i} className={classes.label}>
+                  {label}
+                </li>
+              ))}
+            </ul>
+          )}
+          <div className={classes.inputLabelControls}>
+            <Input inputRef={inputEl} placeholder="Place for your label" />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleAddLabel}
+              size="small"
+            >
+              Add label
+            </Button>
+            <Button
+              className={classes.clearButton}
+              variant="contained"
+              onClick={handleAddLabel}
+              size="small"
+            >
+              Clear All
+            </Button>
           </div>
-
-          <select
-            value={updatedLanguage}
-            name="languageSelect"
-            id="languageSelect"
-            className="language-select"
-            onChange={handleLanguageSelect}
-          >
-            <option value="">Choose your language</option>
-            <option value="javascript">JavaScript</option>
-            <option value="java">Java</option>
-          </select>
         </div>
-        <input ref={inputEl} type="text" placeholder="Label" />
-        <button type="button" onClick={handleAddLabel}>
-          Add label
-        </button>
-      </div>
-      {loading && edges.length === 0 ? <p>Loading...</p> : null}
-      <ul>
-        {edges.map((edge: any) => {
-          return (
-            <li key={edge.node.id}>
-              <IssueItem
-                {...pick(edge.node, [
-                  'state',
-                  'url',
-                  'body',
-                  'publishedAt',
-                  'repository',
-                  'id'
-                ])}
-                labels={get(edge.node, 'labels.nodes', [])}
-              />
-            </li>
-          );
-        })}
-      </ul>
-      {loading && edges.length > 0 ? <p>Loading...</p> : null}
-
-      <div className="fetch-more-container">
+        {loading && edges.length === 0 ? <p>Loading...</p> : null}
+        <div className={classes.issuesContainer}>
+          {edges.map((edge: any) => (
+            <Card key={edge.node.id} className={classes.issue}>
+              <CardContent>
+                <IssueItem
+                  {...pick(edge.node, [
+                    'state',
+                    'url',
+                    'body',
+                    'publishedAt',
+                    'repository',
+                    'id'
+                  ])}
+                  labels={get(edge.node, 'labels.nodes', [])}
+                />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        {loading && edges.length > 0 ? <p>Loading...</p> : null}
         {edges.length > 0 && (
-          <button type="button" onClick={fetchNextIssues}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={fetchNextIssues}
+          >
             Fetch {edges.length > 0 ? 'more' : ''}
-          </button>
+          </Button>
         )}
-      </div>
-    </Layout>
+      </Stepper>
+    </>
   );
 };
 

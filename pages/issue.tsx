@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import pick from 'lodash/pick';
 import get from 'lodash/get';
 
-import Layout from '../components/Layout';
 import { useFindOneIssueQuery } from '../graphql/issue/findIssues.generated';
 import { withApollo } from '../lib/withApollo';
 import { IssueItem } from '../components/Issue';
@@ -20,7 +19,8 @@ const IssuePage: NextPage = () => {
   });
 
   return (
-    <Layout title="Issue" nav={[{ href: '/', label: 'Home' }]}>
+    <>
+      {/*<Layout title="Issue" nav={[{ href: '/', label: 'Home' }]}>*/}
       {loading && <p>Loading...</p>}
       {data && (
         <IssueItem
@@ -34,7 +34,7 @@ const IssuePage: NextPage = () => {
           labels={get(data.node, 'labels.nodes', [])}
         />
       )}
-    </Layout>
+    </>
   );
 };
 

@@ -25,10 +25,9 @@ export const IssueItem: React.FC<IIssueProps> = ({
   id
 }) => {
   return (
-    <div className="container">
+    <div className="issue-wrapper">
       <style jsx>{`
-        .container {
-          border: 2px dashed black;
+        .issue-wrapper {
           padding: 15px;
           position: relative;
         }
