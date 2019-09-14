@@ -8,6 +8,7 @@ import pick from 'lodash/pick';
 import { useApolloClient } from '@apollo/react-hooks';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import MULink from '@material-ui/core/Link';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Input from '@material-ui/core/Input';
@@ -246,13 +247,15 @@ const IndexPage: NextPage = () => {
                       >
                         Add label
                       </Button>
-                      <Button
-                        className={classes.clearButton}
-                        variant="contained"
-                        size="small"
-                      >
-                        Clear All
-                      </Button>
+                      <Link key={'/'} href={'/'}>
+                        <MULink
+                          className={classes.clearButton}
+                          variant="button"
+                          style={{ cursor: 'pointer' }}
+                        >
+                          Clear All
+                        </MULink>
+                      </Link>
                     </div>
                   </div>
                   {loading && edges.length === 0 ? <p>Loading...</p> : null}
