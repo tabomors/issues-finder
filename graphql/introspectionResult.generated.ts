@@ -1,1432 +1,1428 @@
-
-      export interface IntrospectionResultData {
-        __schema: {
-          types: {
-            kind: string;
-            name: string;
-            possibleTypes: {
-              name: string;
-            }[];
-          }[];
-        };
-      }
-
-      const result: IntrospectionResultData = {
-  "__schema": {
-    "types": [
+export interface IntrospectionResultData {
+  __schema: {
+    types: {
+      kind: string;
+      name: string;
+      possibleTypes: {
+        name: string;
+      }[];
+    }[];
+  };
+}
+const result: IntrospectionResultData = {
+  __schema: {
+    types: [
       {
-        "kind": "INTERFACE",
-        "name": "Node",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'Node',
+        possibleTypes: [
           {
-            "name": "CodeOfConduct"
+            name: 'CodeOfConduct'
           },
           {
-            "name": "License"
+            name: 'License'
           },
           {
-            "name": "MarketplaceCategory"
+            name: 'MarketplaceCategory'
           },
           {
-            "name": "MarketplaceListing"
+            name: 'MarketplaceListing'
           },
           {
-            "name": "App"
+            name: 'App'
           },
           {
-            "name": "Organization"
+            name: 'Organization'
           },
           {
-            "name": "RegistryPackage"
+            name: 'RegistryPackage'
           },
           {
-            "name": "RegistryPackageVersion"
+            name: 'RegistryPackageVersion'
           },
           {
-            "name": "RegistryPackageDependency"
+            name: 'RegistryPackageDependency'
           },
           {
-            "name": "RegistryPackageFile"
+            name: 'RegistryPackageFile'
           },
           {
-            "name": "Release"
+            name: 'Release'
           },
           {
-            "name": "User"
+            name: 'User'
           },
           {
-            "name": "Project"
+            name: 'Project'
           },
           {
-            "name": "ProjectColumn"
+            name: 'ProjectColumn'
           },
           {
-            "name": "ProjectCard"
+            name: 'ProjectCard'
           },
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "UserContentEdit"
+            name: 'UserContentEdit'
           },
           {
-            "name": "Label"
+            name: 'Label'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           },
           {
-            "name": "Reaction"
+            name: 'Reaction'
           },
           {
-            "name": "Repository"
+            name: 'Repository'
           },
           {
-            "name": "BranchProtectionRule"
+            name: 'BranchProtectionRule'
           },
           {
-            "name": "Ref"
+            name: 'Ref'
           },
           {
-            "name": "PushAllowance"
+            name: 'PushAllowance'
           },
           {
-            "name": "Team"
+            name: 'Team'
           },
           {
-            "name": "UserStatus"
+            name: 'UserStatus'
           },
           {
-            "name": "OrganizationInvitation"
+            name: 'OrganizationInvitation'
           },
           {
-            "name": "ReviewDismissalAllowance"
+            name: 'ReviewDismissalAllowance'
           },
           {
-            "name": "CommitComment"
+            name: 'CommitComment'
           },
           {
-            "name": "Commit"
+            name: 'Commit'
           },
           {
-            "name": "Deployment"
+            name: 'Deployment'
           },
           {
-            "name": "DeploymentStatus"
+            name: 'DeploymentStatus'
           },
           {
-            "name": "Status"
+            name: 'Status'
           },
           {
-            "name": "StatusContext"
+            name: 'StatusContext'
           },
           {
-            "name": "Tree"
+            name: 'Tree'
           },
           {
-            "name": "DeployKey"
+            name: 'DeployKey'
           },
           {
-            "name": "Language"
+            name: 'Language'
           },
           {
-            "name": "Milestone"
+            name: 'Milestone'
           },
           {
-            "name": "RepositoryTopic"
+            name: 'RepositoryTopic'
           },
           {
-            "name": "Topic"
+            name: 'Topic'
           },
           {
-            "name": "IssueComment"
+            name: 'IssueComment'
           },
           {
-            "name": "PullRequestCommit"
+            name: 'PullRequestCommit'
           },
           {
-            "name": "ReviewRequest"
+            name: 'ReviewRequest'
           },
           {
-            "name": "Mannequin"
+            name: 'Mannequin'
           },
           {
-            "name": "PullRequestReviewThread"
+            name: 'PullRequestReviewThread'
           },
           {
-            "name": "PullRequestReviewComment"
+            name: 'PullRequestReviewComment'
           },
           {
-            "name": "PullRequestReview"
+            name: 'PullRequestReview'
           },
           {
-            "name": "CommitCommentThread"
+            name: 'CommitCommentThread'
           },
           {
-            "name": "ClosedEvent"
+            name: 'ClosedEvent'
           },
           {
-            "name": "ReopenedEvent"
+            name: 'ReopenedEvent'
           },
           {
-            "name": "SubscribedEvent"
+            name: 'SubscribedEvent'
           },
           {
-            "name": "UnsubscribedEvent"
+            name: 'UnsubscribedEvent'
           },
           {
-            "name": "MergedEvent"
+            name: 'MergedEvent'
           },
           {
-            "name": "ReferencedEvent"
+            name: 'ReferencedEvent'
           },
           {
-            "name": "CrossReferencedEvent"
+            name: 'CrossReferencedEvent'
           },
           {
-            "name": "AssignedEvent"
+            name: 'AssignedEvent'
           },
           {
-            "name": "Bot"
+            name: 'Bot'
           },
           {
-            "name": "UnassignedEvent"
+            name: 'UnassignedEvent'
           },
           {
-            "name": "LabeledEvent"
+            name: 'LabeledEvent'
           },
           {
-            "name": "UnlabeledEvent"
+            name: 'UnlabeledEvent'
           },
           {
-            "name": "MilestonedEvent"
+            name: 'MilestonedEvent'
           },
           {
-            "name": "DemilestonedEvent"
+            name: 'DemilestonedEvent'
           },
           {
-            "name": "RenamedTitleEvent"
+            name: 'RenamedTitleEvent'
           },
           {
-            "name": "LockedEvent"
+            name: 'LockedEvent'
           },
           {
-            "name": "UnlockedEvent"
+            name: 'UnlockedEvent'
           },
           {
-            "name": "DeployedEvent"
+            name: 'DeployedEvent'
           },
           {
-            "name": "DeploymentEnvironmentChangedEvent"
+            name: 'DeploymentEnvironmentChangedEvent'
           },
           {
-            "name": "HeadRefDeletedEvent"
+            name: 'HeadRefDeletedEvent'
           },
           {
-            "name": "HeadRefRestoredEvent"
+            name: 'HeadRefRestoredEvent'
           },
           {
-            "name": "HeadRefForcePushedEvent"
+            name: 'HeadRefForcePushedEvent'
           },
           {
-            "name": "BaseRefForcePushedEvent"
+            name: 'BaseRefForcePushedEvent'
           },
           {
-            "name": "ReviewRequestedEvent"
+            name: 'ReviewRequestedEvent'
           },
           {
-            "name": "ReviewRequestRemovedEvent"
+            name: 'ReviewRequestRemovedEvent'
           },
           {
-            "name": "ReviewDismissedEvent"
+            name: 'ReviewDismissedEvent'
           },
           {
-            "name": "UserBlockedEvent"
+            name: 'UserBlockedEvent'
           },
           {
-            "name": "PullRequestCommitCommentThread"
+            name: 'PullRequestCommitCommentThread'
           },
           {
-            "name": "BaseRefChangedEvent"
+            name: 'BaseRefChangedEvent'
           },
           {
-            "name": "ReadyForReviewEvent"
+            name: 'ReadyForReviewEvent'
           },
           {
-            "name": "AddedToProjectEvent"
+            name: 'AddedToProjectEvent'
           },
           {
-            "name": "CommentDeletedEvent"
+            name: 'CommentDeletedEvent'
           },
           {
-            "name": "ConvertedNoteToIssueEvent"
+            name: 'ConvertedNoteToIssueEvent'
           },
           {
-            "name": "MentionedEvent"
+            name: 'MentionedEvent'
           },
           {
-            "name": "MovedColumnsInProjectEvent"
+            name: 'MovedColumnsInProjectEvent'
           },
           {
-            "name": "PinnedEvent"
+            name: 'PinnedEvent'
           },
           {
-            "name": "RemovedFromProjectEvent"
+            name: 'RemovedFromProjectEvent'
           },
           {
-            "name": "TransferredEvent"
+            name: 'TransferredEvent'
           },
           {
-            "name": "UnpinnedEvent"
+            name: 'UnpinnedEvent'
           },
           {
-            "name": "Gist"
+            name: 'Gist'
           },
           {
-            "name": "GistComment"
+            name: 'GistComment'
           },
           {
-            "name": "Sponsorship"
+            name: 'Sponsorship'
           },
           {
-            "name": "PublicKey"
+            name: 'PublicKey'
           },
           {
-            "name": "SavedReply"
+            name: 'SavedReply'
           },
           {
-            "name": "ReleaseAsset"
+            name: 'ReleaseAsset'
           },
           {
-            "name": "RegistryPackageTag"
+            name: 'RegistryPackageTag'
           },
           {
-            "name": "OrganizationIdentityProvider"
+            name: 'OrganizationIdentityProvider'
           },
           {
-            "name": "ExternalIdentity"
+            name: 'ExternalIdentity'
           },
           {
-            "name": "SecurityAdvisory"
+            name: 'SecurityAdvisory'
           },
           {
-            "name": "SponsorsListing"
+            name: 'SponsorsListing'
           },
           {
-            "name": "Blob"
+            name: 'Blob'
           },
           {
-            "name": "RepositoryInvitation"
+            name: 'RepositoryInvitation'
           },
           {
-            "name": "Tag"
+            name: 'Tag'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "Actor",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'Actor',
+        possibleTypes: [
           {
-            "name": "Organization"
+            name: 'Organization'
           },
           {
-            "name": "User"
+            name: 'User'
           },
           {
-            "name": "Mannequin"
+            name: 'Mannequin'
           },
           {
-            "name": "Bot"
+            name: 'Bot'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "RegistryPackageOwner",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'RegistryPackageOwner',
+        possibleTypes: [
           {
-            "name": "Organization"
+            name: 'Organization'
           },
           {
-            "name": "User"
+            name: 'User'
           },
           {
-            "name": "Repository"
+            name: 'Repository'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "UniformResourceLocatable",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'UniformResourceLocatable',
+        possibleTypes: [
           {
-            "name": "Organization"
+            name: 'Organization'
           },
           {
-            "name": "Release"
+            name: 'Release'
           },
           {
-            "name": "User"
+            name: 'User'
           },
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           },
           {
-            "name": "Repository"
+            name: 'Repository'
           },
           {
-            "name": "Commit"
+            name: 'Commit'
           },
           {
-            "name": "Milestone"
+            name: 'Milestone'
           },
           {
-            "name": "RepositoryTopic"
+            name: 'RepositoryTopic'
           },
           {
-            "name": "PullRequestCommit"
+            name: 'PullRequestCommit'
           },
           {
-            "name": "Mannequin"
+            name: 'Mannequin'
           },
           {
-            "name": "ClosedEvent"
+            name: 'ClosedEvent'
           },
           {
-            "name": "MergedEvent"
+            name: 'MergedEvent'
           },
           {
-            "name": "CrossReferencedEvent"
+            name: 'CrossReferencedEvent'
           },
           {
-            "name": "Bot"
+            name: 'Bot'
           },
           {
-            "name": "ReviewDismissedEvent"
+            name: 'ReviewDismissedEvent'
           },
           {
-            "name": "ReadyForReviewEvent"
+            name: 'ReadyForReviewEvent'
           },
           {
-            "name": "Gist"
+            name: 'Gist'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "RegistryPackageSearch",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'RegistryPackageSearch',
+        possibleTypes: [
           {
-            "name": "Organization"
+            name: 'Organization'
           },
           {
-            "name": "User"
+            name: 'User'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "ProjectOwner",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'ProjectOwner',
+        possibleTypes: [
           {
-            "name": "Organization"
+            name: 'Organization'
           },
           {
-            "name": "User"
+            name: 'User'
           },
           {
-            "name": "Repository"
+            name: 'Repository'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "Closable",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'Closable',
+        possibleTypes: [
           {
-            "name": "Project"
+            name: 'Project'
           },
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           },
           {
-            "name": "Milestone"
+            name: 'Milestone'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "Updatable",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'Updatable',
+        possibleTypes: [
           {
-            "name": "Project"
+            name: 'Project'
           },
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           },
           {
-            "name": "CommitComment"
+            name: 'CommitComment'
           },
           {
-            "name": "IssueComment"
+            name: 'IssueComment'
           },
           {
-            "name": "PullRequestReviewComment"
+            name: 'PullRequestReviewComment'
           },
           {
-            "name": "PullRequestReview"
+            name: 'PullRequestReview'
           },
           {
-            "name": "GistComment"
+            name: 'GistComment'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "ProjectCardItem",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'ProjectCardItem',
+        possibleTypes: [
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "Assignable",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'Assignable',
+        possibleTypes: [
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "Comment",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'Comment',
+        possibleTypes: [
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           },
           {
-            "name": "CommitComment"
+            name: 'CommitComment'
           },
           {
-            "name": "IssueComment"
+            name: 'IssueComment'
           },
           {
-            "name": "PullRequestReviewComment"
+            name: 'PullRequestReviewComment'
           },
           {
-            "name": "PullRequestReview"
+            name: 'PullRequestReview'
           },
           {
-            "name": "GistComment"
+            name: 'GistComment'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "UpdatableComment",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'UpdatableComment',
+        possibleTypes: [
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           },
           {
-            "name": "CommitComment"
+            name: 'CommitComment'
           },
           {
-            "name": "IssueComment"
+            name: 'IssueComment'
           },
           {
-            "name": "PullRequestReviewComment"
+            name: 'PullRequestReviewComment'
           },
           {
-            "name": "PullRequestReview"
+            name: 'PullRequestReview'
           },
           {
-            "name": "GistComment"
+            name: 'GistComment'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "Labelable",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'Labelable',
+        possibleTypes: [
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "Lockable",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'Lockable',
+        possibleTypes: [
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "Reactable",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'Reactable',
+        possibleTypes: [
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           },
           {
-            "name": "CommitComment"
+            name: 'CommitComment'
           },
           {
-            "name": "IssueComment"
+            name: 'IssueComment'
           },
           {
-            "name": "PullRequestReviewComment"
+            name: 'PullRequestReviewComment'
           },
           {
-            "name": "PullRequestReview"
+            name: 'PullRequestReview'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "RepositoryNode",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'RepositoryNode',
+        possibleTypes: [
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           },
           {
-            "name": "CommitComment"
+            name: 'CommitComment'
           },
           {
-            "name": "IssueComment"
+            name: 'IssueComment'
           },
           {
-            "name": "PullRequestReviewComment"
+            name: 'PullRequestReviewComment'
           },
           {
-            "name": "PullRequestReview"
+            name: 'PullRequestReview'
           },
           {
-            "name": "CommitCommentThread"
+            name: 'CommitCommentThread'
           },
           {
-            "name": "PullRequestCommitCommentThread"
+            name: 'PullRequestCommitCommentThread'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "Subscribable",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'Subscribable',
+        possibleTypes: [
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           },
           {
-            "name": "Repository"
+            name: 'Repository'
           },
           {
-            "name": "Team"
+            name: 'Team'
           },
           {
-            "name": "Commit"
+            name: 'Commit'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "Starrable",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'Starrable',
+        possibleTypes: [
           {
-            "name": "Repository"
+            name: 'Repository'
           },
           {
-            "name": "Topic"
+            name: 'Topic'
           },
           {
-            "name": "Gist"
+            name: 'Gist'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "RepositoryInfo",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'RepositoryInfo',
+        possibleTypes: [
           {
-            "name": "Repository"
+            name: 'Repository'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "RepositoryOwner",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'RepositoryOwner',
+        possibleTypes: [
           {
-            "name": "Organization"
+            name: 'Organization'
           },
           {
-            "name": "User"
+            name: 'User'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "GitObject",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'GitObject',
+        possibleTypes: [
           {
-            "name": "Commit"
+            name: 'Commit'
           },
           {
-            "name": "Tree"
+            name: 'Tree'
           },
           {
-            "name": "Blob"
+            name: 'Blob'
           },
           {
-            "name": "Tag"
+            name: 'Tag'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "PushAllowanceActor",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'PushAllowanceActor',
+        possibleTypes: [
           {
-            "name": "User"
+            name: 'User'
           },
           {
-            "name": "Team"
+            name: 'Team'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "MemberStatusable",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'MemberStatusable',
+        possibleTypes: [
           {
-            "name": "Organization"
+            name: 'Organization'
           },
           {
-            "name": "Team"
+            name: 'Team'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "ReviewDismissalAllowanceActor",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'ReviewDismissalAllowanceActor',
+        possibleTypes: [
           {
-            "name": "User"
+            name: 'User'
           },
           {
-            "name": "Team"
+            name: 'Team'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "PermissionGranter",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'PermissionGranter',
+        possibleTypes: [
           {
-            "name": "Organization"
+            name: 'Organization'
           },
           {
-            "name": "Repository"
+            name: 'Repository'
           },
           {
-            "name": "Team"
+            name: 'Team'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "Deletable",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'Deletable',
+        possibleTypes: [
           {
-            "name": "CommitComment"
+            name: 'CommitComment'
           },
           {
-            "name": "IssueComment"
+            name: 'IssueComment'
           },
           {
-            "name": "PullRequestReviewComment"
+            name: 'PullRequestReviewComment'
           },
           {
-            "name": "PullRequestReview"
+            name: 'PullRequestReview'
           },
           {
-            "name": "GistComment"
+            name: 'GistComment'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "GitSignature",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'GitSignature',
+        possibleTypes: [
           {
-            "name": "GpgSignature"
+            name: 'GpgSignature'
           },
           {
-            "name": "SmimeSignature"
+            name: 'SmimeSignature'
           },
           {
-            "name": "UnknownSignature"
+            name: 'UnknownSignature'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "IssueOrPullRequest",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'IssueOrPullRequest',
+        possibleTypes: [
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "RequestedReviewer",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'RequestedReviewer',
+        possibleTypes: [
           {
-            "name": "User"
+            name: 'User'
           },
           {
-            "name": "Team"
+            name: 'Team'
           },
           {
-            "name": "Mannequin"
+            name: 'Mannequin'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "PullRequestTimelineItem",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'PullRequestTimelineItem',
+        possibleTypes: [
           {
-            "name": "Commit"
+            name: 'Commit'
           },
           {
-            "name": "CommitCommentThread"
+            name: 'CommitCommentThread'
           },
           {
-            "name": "PullRequestReview"
+            name: 'PullRequestReview'
           },
           {
-            "name": "PullRequestReviewThread"
+            name: 'PullRequestReviewThread'
           },
           {
-            "name": "PullRequestReviewComment"
+            name: 'PullRequestReviewComment'
           },
           {
-            "name": "IssueComment"
+            name: 'IssueComment'
           },
           {
-            "name": "ClosedEvent"
+            name: 'ClosedEvent'
           },
           {
-            "name": "ReopenedEvent"
+            name: 'ReopenedEvent'
           },
           {
-            "name": "SubscribedEvent"
+            name: 'SubscribedEvent'
           },
           {
-            "name": "UnsubscribedEvent"
+            name: 'UnsubscribedEvent'
           },
           {
-            "name": "MergedEvent"
+            name: 'MergedEvent'
           },
           {
-            "name": "ReferencedEvent"
+            name: 'ReferencedEvent'
           },
           {
-            "name": "CrossReferencedEvent"
+            name: 'CrossReferencedEvent'
           },
           {
-            "name": "AssignedEvent"
+            name: 'AssignedEvent'
           },
           {
-            "name": "UnassignedEvent"
+            name: 'UnassignedEvent'
           },
           {
-            "name": "LabeledEvent"
+            name: 'LabeledEvent'
           },
           {
-            "name": "UnlabeledEvent"
+            name: 'UnlabeledEvent'
           },
           {
-            "name": "MilestonedEvent"
+            name: 'MilestonedEvent'
           },
           {
-            "name": "DemilestonedEvent"
+            name: 'DemilestonedEvent'
           },
           {
-            "name": "RenamedTitleEvent"
+            name: 'RenamedTitleEvent'
           },
           {
-            "name": "LockedEvent"
+            name: 'LockedEvent'
           },
           {
-            "name": "UnlockedEvent"
+            name: 'UnlockedEvent'
           },
           {
-            "name": "DeployedEvent"
+            name: 'DeployedEvent'
           },
           {
-            "name": "DeploymentEnvironmentChangedEvent"
+            name: 'DeploymentEnvironmentChangedEvent'
           },
           {
-            "name": "HeadRefDeletedEvent"
+            name: 'HeadRefDeletedEvent'
           },
           {
-            "name": "HeadRefRestoredEvent"
+            name: 'HeadRefRestoredEvent'
           },
           {
-            "name": "HeadRefForcePushedEvent"
+            name: 'HeadRefForcePushedEvent'
           },
           {
-            "name": "BaseRefForcePushedEvent"
+            name: 'BaseRefForcePushedEvent'
           },
           {
-            "name": "ReviewRequestedEvent"
+            name: 'ReviewRequestedEvent'
           },
           {
-            "name": "ReviewRequestRemovedEvent"
+            name: 'ReviewRequestRemovedEvent'
           },
           {
-            "name": "ReviewDismissedEvent"
+            name: 'ReviewDismissedEvent'
           },
           {
-            "name": "UserBlockedEvent"
+            name: 'UserBlockedEvent'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "Closer",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'Closer',
+        possibleTypes: [
           {
-            "name": "Commit"
+            name: 'Commit'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "ReferencedSubject",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'ReferencedSubject',
+        possibleTypes: [
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "Assignee",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'Assignee',
+        possibleTypes: [
           {
-            "name": "Bot"
+            name: 'Bot'
           },
           {
-            "name": "Mannequin"
+            name: 'Mannequin'
           },
           {
-            "name": "Organization"
+            name: 'Organization'
           },
           {
-            "name": "User"
+            name: 'User'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "MilestoneItem",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'MilestoneItem',
+        possibleTypes: [
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "RenamedTitleSubject",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'RenamedTitleSubject',
+        possibleTypes: [
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "PullRequestTimelineItems",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'PullRequestTimelineItems',
+        possibleTypes: [
           {
-            "name": "PullRequestCommit"
+            name: 'PullRequestCommit'
           },
           {
-            "name": "PullRequestCommitCommentThread"
+            name: 'PullRequestCommitCommentThread'
           },
           {
-            "name": "PullRequestReview"
+            name: 'PullRequestReview'
           },
           {
-            "name": "PullRequestReviewThread"
+            name: 'PullRequestReviewThread'
           },
           {
-            "name": "PullRequestRevisionMarker"
+            name: 'PullRequestRevisionMarker'
           },
           {
-            "name": "BaseRefChangedEvent"
+            name: 'BaseRefChangedEvent'
           },
           {
-            "name": "BaseRefForcePushedEvent"
+            name: 'BaseRefForcePushedEvent'
           },
           {
-            "name": "DeployedEvent"
+            name: 'DeployedEvent'
           },
           {
-            "name": "DeploymentEnvironmentChangedEvent"
+            name: 'DeploymentEnvironmentChangedEvent'
           },
           {
-            "name": "HeadRefDeletedEvent"
+            name: 'HeadRefDeletedEvent'
           },
           {
-            "name": "HeadRefForcePushedEvent"
+            name: 'HeadRefForcePushedEvent'
           },
           {
-            "name": "HeadRefRestoredEvent"
+            name: 'HeadRefRestoredEvent'
           },
           {
-            "name": "MergedEvent"
+            name: 'MergedEvent'
           },
           {
-            "name": "ReviewDismissedEvent"
+            name: 'ReviewDismissedEvent'
           },
           {
-            "name": "ReviewRequestedEvent"
+            name: 'ReviewRequestedEvent'
           },
           {
-            "name": "ReviewRequestRemovedEvent"
+            name: 'ReviewRequestRemovedEvent'
           },
           {
-            "name": "ReadyForReviewEvent"
+            name: 'ReadyForReviewEvent'
           },
           {
-            "name": "IssueComment"
+            name: 'IssueComment'
           },
           {
-            "name": "CrossReferencedEvent"
+            name: 'CrossReferencedEvent'
           },
           {
-            "name": "AddedToProjectEvent"
+            name: 'AddedToProjectEvent'
           },
           {
-            "name": "AssignedEvent"
+            name: 'AssignedEvent'
           },
           {
-            "name": "ClosedEvent"
+            name: 'ClosedEvent'
           },
           {
-            "name": "CommentDeletedEvent"
+            name: 'CommentDeletedEvent'
           },
           {
-            "name": "ConvertedNoteToIssueEvent"
+            name: 'ConvertedNoteToIssueEvent'
           },
           {
-            "name": "DemilestonedEvent"
+            name: 'DemilestonedEvent'
           },
           {
-            "name": "LabeledEvent"
+            name: 'LabeledEvent'
           },
           {
-            "name": "LockedEvent"
+            name: 'LockedEvent'
           },
           {
-            "name": "MentionedEvent"
+            name: 'MentionedEvent'
           },
           {
-            "name": "MilestonedEvent"
+            name: 'MilestonedEvent'
           },
           {
-            "name": "MovedColumnsInProjectEvent"
+            name: 'MovedColumnsInProjectEvent'
           },
           {
-            "name": "PinnedEvent"
+            name: 'PinnedEvent'
           },
           {
-            "name": "ReferencedEvent"
+            name: 'ReferencedEvent'
           },
           {
-            "name": "RemovedFromProjectEvent"
+            name: 'RemovedFromProjectEvent'
           },
           {
-            "name": "RenamedTitleEvent"
+            name: 'RenamedTitleEvent'
           },
           {
-            "name": "ReopenedEvent"
+            name: 'ReopenedEvent'
           },
           {
-            "name": "SubscribedEvent"
+            name: 'SubscribedEvent'
           },
           {
-            "name": "TransferredEvent"
+            name: 'TransferredEvent'
           },
           {
-            "name": "UnassignedEvent"
+            name: 'UnassignedEvent'
           },
           {
-            "name": "UnlabeledEvent"
+            name: 'UnlabeledEvent'
           },
           {
-            "name": "UnlockedEvent"
+            name: 'UnlockedEvent'
           },
           {
-            "name": "UserBlockedEvent"
+            name: 'UserBlockedEvent'
           },
           {
-            "name": "UnpinnedEvent"
+            name: 'UnpinnedEvent'
           },
           {
-            "name": "UnsubscribedEvent"
+            name: 'UnsubscribedEvent'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "IssueTimelineItem",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'IssueTimelineItem',
+        possibleTypes: [
           {
-            "name": "Commit"
+            name: 'Commit'
           },
           {
-            "name": "IssueComment"
+            name: 'IssueComment'
           },
           {
-            "name": "CrossReferencedEvent"
+            name: 'CrossReferencedEvent'
           },
           {
-            "name": "ClosedEvent"
+            name: 'ClosedEvent'
           },
           {
-            "name": "ReopenedEvent"
+            name: 'ReopenedEvent'
           },
           {
-            "name": "SubscribedEvent"
+            name: 'SubscribedEvent'
           },
           {
-            "name": "UnsubscribedEvent"
+            name: 'UnsubscribedEvent'
           },
           {
-            "name": "ReferencedEvent"
+            name: 'ReferencedEvent'
           },
           {
-            "name": "AssignedEvent"
+            name: 'AssignedEvent'
           },
           {
-            "name": "UnassignedEvent"
+            name: 'UnassignedEvent'
           },
           {
-            "name": "LabeledEvent"
+            name: 'LabeledEvent'
           },
           {
-            "name": "UnlabeledEvent"
+            name: 'UnlabeledEvent'
           },
           {
-            "name": "UserBlockedEvent"
+            name: 'UserBlockedEvent'
           },
           {
-            "name": "MilestonedEvent"
+            name: 'MilestonedEvent'
           },
           {
-            "name": "DemilestonedEvent"
+            name: 'DemilestonedEvent'
           },
           {
-            "name": "RenamedTitleEvent"
+            name: 'RenamedTitleEvent'
           },
           {
-            "name": "LockedEvent"
+            name: 'LockedEvent'
           },
           {
-            "name": "UnlockedEvent"
+            name: 'UnlockedEvent'
           },
           {
-            "name": "TransferredEvent"
+            name: 'TransferredEvent'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "IssueTimelineItems",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'IssueTimelineItems',
+        possibleTypes: [
           {
-            "name": "IssueComment"
+            name: 'IssueComment'
           },
           {
-            "name": "CrossReferencedEvent"
+            name: 'CrossReferencedEvent'
           },
           {
-            "name": "AddedToProjectEvent"
+            name: 'AddedToProjectEvent'
           },
           {
-            "name": "AssignedEvent"
+            name: 'AssignedEvent'
           },
           {
-            "name": "ClosedEvent"
+            name: 'ClosedEvent'
           },
           {
-            "name": "CommentDeletedEvent"
+            name: 'CommentDeletedEvent'
           },
           {
-            "name": "ConvertedNoteToIssueEvent"
+            name: 'ConvertedNoteToIssueEvent'
           },
           {
-            "name": "DemilestonedEvent"
+            name: 'DemilestonedEvent'
           },
           {
-            "name": "LabeledEvent"
+            name: 'LabeledEvent'
           },
           {
-            "name": "LockedEvent"
+            name: 'LockedEvent'
           },
           {
-            "name": "MentionedEvent"
+            name: 'MentionedEvent'
           },
           {
-            "name": "MilestonedEvent"
+            name: 'MilestonedEvent'
           },
           {
-            "name": "MovedColumnsInProjectEvent"
+            name: 'MovedColumnsInProjectEvent'
           },
           {
-            "name": "PinnedEvent"
+            name: 'PinnedEvent'
           },
           {
-            "name": "ReferencedEvent"
+            name: 'ReferencedEvent'
           },
           {
-            "name": "RemovedFromProjectEvent"
+            name: 'RemovedFromProjectEvent'
           },
           {
-            "name": "RenamedTitleEvent"
+            name: 'RenamedTitleEvent'
           },
           {
-            "name": "ReopenedEvent"
+            name: 'ReopenedEvent'
           },
           {
-            "name": "SubscribedEvent"
+            name: 'SubscribedEvent'
           },
           {
-            "name": "TransferredEvent"
+            name: 'TransferredEvent'
           },
           {
-            "name": "UnassignedEvent"
+            name: 'UnassignedEvent'
           },
           {
-            "name": "UnlabeledEvent"
+            name: 'UnlabeledEvent'
           },
           {
-            "name": "UnlockedEvent"
+            name: 'UnlockedEvent'
           },
           {
-            "name": "UserBlockedEvent"
+            name: 'UserBlockedEvent'
           },
           {
-            "name": "UnpinnedEvent"
+            name: 'UnpinnedEvent'
           },
           {
-            "name": "UnsubscribedEvent"
+            name: 'UnsubscribedEvent'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "ProfileOwner",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'ProfileOwner',
+        possibleTypes: [
           {
-            "name": "Organization"
+            name: 'Organization'
           },
           {
-            "name": "User"
+            name: 'User'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "PinnableItem",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'PinnableItem',
+        possibleTypes: [
           {
-            "name": "Gist"
+            name: 'Gist'
           },
           {
-            "name": "Repository"
+            name: 'Repository'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "Sponsorable",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'Sponsorable',
+        possibleTypes: [
           {
-            "name": "User"
+            name: 'User'
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "Contribution",
-        "possibleTypes": [
+        kind: 'INTERFACE',
+        name: 'Contribution',
+        possibleTypes: [
           {
-            "name": "CreatedCommitContribution"
+            name: 'CreatedCommitContribution'
           },
           {
-            "name": "CreatedIssueContribution"
+            name: 'CreatedIssueContribution'
           },
           {
-            "name": "RestrictedContribution"
+            name: 'RestrictedContribution'
           },
           {
-            "name": "CreatedPullRequestContribution"
+            name: 'CreatedPullRequestContribution'
           },
           {
-            "name": "CreatedRepositoryContribution"
+            name: 'CreatedRepositoryContribution'
           },
           {
-            "name": "JoinedGitHubContribution"
+            name: 'JoinedGitHubContribution'
           },
           {
-            "name": "CreatedPullRequestReviewContribution"
+            name: 'CreatedPullRequestReviewContribution'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "CreatedIssueOrRestrictedContribution",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'CreatedIssueOrRestrictedContribution',
+        possibleTypes: [
           {
-            "name": "CreatedIssueContribution"
+            name: 'CreatedIssueContribution'
           },
           {
-            "name": "RestrictedContribution"
+            name: 'RestrictedContribution'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "CreatedPullRequestOrRestrictedContribution",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'CreatedPullRequestOrRestrictedContribution',
+        possibleTypes: [
           {
-            "name": "CreatedPullRequestContribution"
+            name: 'CreatedPullRequestContribution'
           },
           {
-            "name": "RestrictedContribution"
+            name: 'RestrictedContribution'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "CreatedRepositoryOrRestrictedContribution",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'CreatedRepositoryOrRestrictedContribution',
+        possibleTypes: [
           {
-            "name": "CreatedRepositoryContribution"
+            name: 'CreatedRepositoryContribution'
           },
           {
-            "name": "RestrictedContribution"
+            name: 'RestrictedContribution'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "SearchResultItem",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'SearchResultItem',
+        possibleTypes: [
           {
-            "name": "Issue"
+            name: 'Issue'
           },
           {
-            "name": "PullRequest"
+            name: 'PullRequest'
           },
           {
-            "name": "Repository"
+            name: 'Repository'
           },
           {
-            "name": "User"
+            name: 'User'
           },
           {
-            "name": "Organization"
+            name: 'Organization'
           },
           {
-            "name": "MarketplaceListing"
+            name: 'MarketplaceListing'
           },
           {
-            "name": "App"
+            name: 'App'
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "CollectionItemContent",
-        "possibleTypes": [
+        kind: 'UNION',
+        name: 'CollectionItemContent',
+        possibleTypes: [
           {
-            "name": "Repository"
+            name: 'Repository'
           },
           {
-            "name": "Organization"
+            name: 'Organization'
           },
           {
-            "name": "User"
+            name: 'User'
           }
         ]
       }
     ]
   }
 };
-
-      export default result;
-    
+export default result;

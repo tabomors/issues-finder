@@ -3,6 +3,7 @@ import * as Types from '../../types/types';
 import gql from 'graphql-tag';
 import * as ApolloReactCommon from '@apollo/react-common';
 import * as ApolloReactHooks from '@apollo/react-hooks';
+
 export type IssueContentFragment = { __typename?: 'Issue' } & Pick<
   Types.Issue,
   'state' | 'url' | 'id' | 'body' | 'publishedAt' | 'closed'
@@ -46,15 +47,13 @@ export type FindIssuesQuery = { __typename?: 'Query' } & {
             'cursor'
           > & {
               node: Types.Maybe<
-                (
-                  | { __typename?: 'Issue' }
-                  | { __typename?: 'PullRequest' }
-                  | { __typename?: 'Repository' }
-                  | { __typename?: 'User' }
-                  | { __typename?: 'Organization' }
-                  | { __typename?: 'MarketplaceListing' }
-                  | { __typename?: 'App' }) &
-                  IssueContentFragment
+                | ({ __typename: 'Issue' } & IssueContentFragment)
+                | { __typename: 'PullRequest' }
+                | { __typename: 'Repository' }
+                | { __typename: 'User' }
+                | { __typename: 'Organization' }
+                | { __typename: 'MarketplaceListing' }
+                | { __typename: 'App' }
               >;
             }
         >
@@ -69,111 +68,110 @@ export type FindOneIssueQueryVariables = {
 
 export type FindOneIssueQuery = { __typename?: 'Query' } & {
   node: Types.Maybe<
-    (
-      | { __typename: 'CodeOfConduct' }
-      | { __typename: 'License' }
-      | { __typename: 'MarketplaceCategory' }
-      | { __typename: 'MarketplaceListing' }
-      | { __typename: 'App' }
-      | { __typename: 'Organization' }
-      | { __typename: 'RegistryPackage' }
-      | { __typename: 'RegistryPackageVersion' }
-      | { __typename: 'RegistryPackageDependency' }
-      | { __typename: 'RegistryPackageFile' }
-      | { __typename: 'Release' }
-      | { __typename: 'User' }
-      | { __typename: 'Project' }
-      | { __typename: 'ProjectColumn' }
-      | { __typename: 'ProjectCard' }
-      | { __typename: 'Issue' }
-      | { __typename: 'UserContentEdit' }
-      | { __typename: 'Label' }
-      | { __typename: 'PullRequest' }
-      | { __typename: 'Reaction' }
-      | { __typename: 'Repository' }
-      | { __typename: 'BranchProtectionRule' }
-      | { __typename: 'Ref' }
-      | { __typename: 'PushAllowance' }
-      | { __typename: 'Team' }
-      | { __typename: 'UserStatus' }
-      | { __typename: 'OrganizationInvitation' }
-      | { __typename: 'ReviewDismissalAllowance' }
-      | { __typename: 'CommitComment' }
-      | { __typename: 'Commit' }
-      | { __typename: 'Deployment' }
-      | { __typename: 'DeploymentStatus' }
-      | { __typename: 'Status' }
-      | { __typename: 'StatusContext' }
-      | { __typename: 'Tree' }
-      | { __typename: 'DeployKey' }
-      | { __typename: 'Language' }
-      | { __typename: 'Milestone' }
-      | { __typename: 'RepositoryTopic' }
-      | { __typename: 'Topic' }
-      | { __typename: 'IssueComment' }
-      | { __typename: 'PullRequestCommit' }
-      | { __typename: 'ReviewRequest' }
-      | { __typename: 'Mannequin' }
-      | { __typename: 'PullRequestReviewThread' }
-      | { __typename: 'PullRequestReviewComment' }
-      | { __typename: 'PullRequestReview' }
-      | { __typename: 'CommitCommentThread' }
-      | { __typename: 'ClosedEvent' }
-      | { __typename: 'ReopenedEvent' }
-      | { __typename: 'SubscribedEvent' }
-      | { __typename: 'UnsubscribedEvent' }
-      | { __typename: 'MergedEvent' }
-      | { __typename: 'ReferencedEvent' }
-      | { __typename: 'CrossReferencedEvent' }
-      | { __typename: 'AssignedEvent' }
-      | { __typename: 'Bot' }
-      | { __typename: 'UnassignedEvent' }
-      | { __typename: 'LabeledEvent' }
-      | { __typename: 'UnlabeledEvent' }
-      | { __typename: 'MilestonedEvent' }
-      | { __typename: 'DemilestonedEvent' }
-      | { __typename: 'RenamedTitleEvent' }
-      | { __typename: 'LockedEvent' }
-      | { __typename: 'UnlockedEvent' }
-      | { __typename: 'DeployedEvent' }
-      | { __typename: 'DeploymentEnvironmentChangedEvent' }
-      | { __typename: 'HeadRefDeletedEvent' }
-      | { __typename: 'HeadRefRestoredEvent' }
-      | { __typename: 'HeadRefForcePushedEvent' }
-      | { __typename: 'BaseRefForcePushedEvent' }
-      | { __typename: 'ReviewRequestedEvent' }
-      | { __typename: 'ReviewRequestRemovedEvent' }
-      | { __typename: 'ReviewDismissedEvent' }
-      | { __typename: 'UserBlockedEvent' }
-      | { __typename: 'PullRequestCommitCommentThread' }
-      | { __typename: 'BaseRefChangedEvent' }
-      | { __typename: 'ReadyForReviewEvent' }
-      | { __typename: 'AddedToProjectEvent' }
-      | { __typename: 'CommentDeletedEvent' }
-      | { __typename: 'ConvertedNoteToIssueEvent' }
-      | { __typename: 'MentionedEvent' }
-      | { __typename: 'MovedColumnsInProjectEvent' }
-      | { __typename: 'PinnedEvent' }
-      | { __typename: 'RemovedFromProjectEvent' }
-      | { __typename: 'TransferredEvent' }
-      | { __typename: 'UnpinnedEvent' }
-      | { __typename: 'Gist' }
-      | { __typename: 'GistComment' }
-      | { __typename: 'Sponsorship' }
-      | { __typename: 'PublicKey' }
-      | { __typename: 'SavedReply' }
-      | { __typename: 'ReleaseAsset' }
-      | { __typename: 'RegistryPackageTag' }
-      | { __typename: 'OrganizationIdentityProvider' }
-      | { __typename: 'ExternalIdentity' }
-      | { __typename: 'SecurityAdvisory' }
-      | { __typename: 'SponsorsListing' }
-      | { __typename: 'Blob' }
-      | { __typename: 'RepositoryInvitation' }
-      | { __typename: 'Tag' }) &
-      IssueContentFragment
+    | { __typename: 'CodeOfConduct' }
+    | { __typename: 'License' }
+    | { __typename: 'MarketplaceCategory' }
+    | { __typename: 'MarketplaceListing' }
+    | { __typename: 'App' }
+    | { __typename: 'Organization' }
+    | { __typename: 'RegistryPackage' }
+    | { __typename: 'RegistryPackageVersion' }
+    | { __typename: 'RegistryPackageDependency' }
+    | { __typename: 'RegistryPackageFile' }
+    | { __typename: 'Release' }
+    | { __typename: 'User' }
+    | { __typename: 'Project' }
+    | { __typename: 'ProjectColumn' }
+    | { __typename: 'ProjectCard' }
+    | ({ __typename: 'Issue' } & IssueContentFragment)
+    | { __typename: 'UserContentEdit' }
+    | { __typename: 'Label' }
+    | { __typename: 'PullRequest' }
+    | { __typename: 'Reaction' }
+    | { __typename: 'Repository' }
+    | { __typename: 'BranchProtectionRule' }
+    | { __typename: 'Ref' }
+    | { __typename: 'PushAllowance' }
+    | { __typename: 'Team' }
+    | { __typename: 'UserStatus' }
+    | { __typename: 'OrganizationInvitation' }
+    | { __typename: 'ReviewDismissalAllowance' }
+    | { __typename: 'CommitComment' }
+    | { __typename: 'Commit' }
+    | { __typename: 'Deployment' }
+    | { __typename: 'DeploymentStatus' }
+    | { __typename: 'Status' }
+    | { __typename: 'StatusContext' }
+    | { __typename: 'Tree' }
+    | { __typename: 'DeployKey' }
+    | { __typename: 'Language' }
+    | { __typename: 'Milestone' }
+    | { __typename: 'RepositoryTopic' }
+    | { __typename: 'Topic' }
+    | { __typename: 'IssueComment' }
+    | { __typename: 'PullRequestCommit' }
+    | { __typename: 'ReviewRequest' }
+    | { __typename: 'Mannequin' }
+    | { __typename: 'PullRequestReviewThread' }
+    | { __typename: 'PullRequestReviewComment' }
+    | { __typename: 'PullRequestReview' }
+    | { __typename: 'CommitCommentThread' }
+    | { __typename: 'ClosedEvent' }
+    | { __typename: 'ReopenedEvent' }
+    | { __typename: 'SubscribedEvent' }
+    | { __typename: 'UnsubscribedEvent' }
+    | { __typename: 'MergedEvent' }
+    | { __typename: 'ReferencedEvent' }
+    | { __typename: 'CrossReferencedEvent' }
+    | { __typename: 'AssignedEvent' }
+    | { __typename: 'Bot' }
+    | { __typename: 'UnassignedEvent' }
+    | { __typename: 'LabeledEvent' }
+    | { __typename: 'UnlabeledEvent' }
+    | { __typename: 'MilestonedEvent' }
+    | { __typename: 'DemilestonedEvent' }
+    | { __typename: 'RenamedTitleEvent' }
+    | { __typename: 'LockedEvent' }
+    | { __typename: 'UnlockedEvent' }
+    | { __typename: 'DeployedEvent' }
+    | { __typename: 'DeploymentEnvironmentChangedEvent' }
+    | { __typename: 'HeadRefDeletedEvent' }
+    | { __typename: 'HeadRefRestoredEvent' }
+    | { __typename: 'HeadRefForcePushedEvent' }
+    | { __typename: 'BaseRefForcePushedEvent' }
+    | { __typename: 'ReviewRequestedEvent' }
+    | { __typename: 'ReviewRequestRemovedEvent' }
+    | { __typename: 'ReviewDismissedEvent' }
+    | { __typename: 'UserBlockedEvent' }
+    | { __typename: 'PullRequestCommitCommentThread' }
+    | { __typename: 'BaseRefChangedEvent' }
+    | { __typename: 'ReadyForReviewEvent' }
+    | { __typename: 'AddedToProjectEvent' }
+    | { __typename: 'CommentDeletedEvent' }
+    | { __typename: 'ConvertedNoteToIssueEvent' }
+    | { __typename: 'MentionedEvent' }
+    | { __typename: 'MovedColumnsInProjectEvent' }
+    | { __typename: 'PinnedEvent' }
+    | { __typename: 'RemovedFromProjectEvent' }
+    | { __typename: 'TransferredEvent' }
+    | { __typename: 'UnpinnedEvent' }
+    | { __typename: 'Gist' }
+    | { __typename: 'GistComment' }
+    | { __typename: 'Sponsorship' }
+    | { __typename: 'PublicKey' }
+    | { __typename: 'SavedReply' }
+    | { __typename: 'ReleaseAsset' }
+    | { __typename: 'RegistryPackageTag' }
+    | { __typename: 'OrganizationIdentityProvider' }
+    | { __typename: 'ExternalIdentity' }
+    | { __typename: 'SecurityAdvisory' }
+    | { __typename: 'SponsorsListing' }
+    | { __typename: 'Blob' }
+    | { __typename: 'RepositoryInvitation' }
+    | { __typename: 'Tag' }
   >;
 };
+
 export const IssueContentFragmentDoc = gql`
   fragment IssueContent on Issue {
     state
@@ -216,6 +214,23 @@ export const FindIssuesDocument = gql`
   ${IssueContentFragmentDoc}
 `;
 
+/**
+ * __useFindIssuesQuery__
+ *
+ * To run a query within a React component, call `useFindIssuesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindIssuesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFindIssuesQuery({
+ *   variables: {
+ *      query: // value for 'query'
+ *      after: // value for 'after'
+ *   },
+ * });
+ */
 export function useFindIssuesQuery(
   baseOptions?: ApolloReactHooks.QueryHookOptions<
     FindIssuesQuery,
@@ -238,8 +253,10 @@ export function useFindIssuesLazyQuery(
     FindIssuesQueryVariables
   >(FindIssuesDocument, baseOptions);
 }
-
 export type FindIssuesQueryHookResult = ReturnType<typeof useFindIssuesQuery>;
+export type FindIssuesLazyQueryHookResult = ReturnType<
+  typeof useFindIssuesLazyQuery
+>;
 export type FindIssuesQueryResult = ApolloReactCommon.QueryResult<
   FindIssuesQuery,
   FindIssuesQueryVariables
@@ -254,6 +271,22 @@ export const FindOneIssueDocument = gql`
   ${IssueContentFragmentDoc}
 `;
 
+/**
+ * __useFindOneIssueQuery__
+ *
+ * To run a query within a React component, call `useFindOneIssueQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindOneIssueQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFindOneIssueQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
 export function useFindOneIssueQuery(
   baseOptions?: ApolloReactHooks.QueryHookOptions<
     FindOneIssueQuery,
@@ -276,9 +309,11 @@ export function useFindOneIssueLazyQuery(
     FindOneIssueQueryVariables
   >(FindOneIssueDocument, baseOptions);
 }
-
 export type FindOneIssueQueryHookResult = ReturnType<
   typeof useFindOneIssueQuery
+>;
+export type FindOneIssueLazyQueryHookResult = ReturnType<
+  typeof useFindOneIssueLazyQuery
 >;
 export type FindOneIssueQueryResult = ApolloReactCommon.QueryResult<
   FindOneIssueQuery,

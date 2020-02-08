@@ -95,7 +95,6 @@ export function withApollo(PageComponent: NextPage, { ssr = true } = {}) {
             // Run all GraphQL queries
             const { getDataFromTree } = await import('@apollo/react-ssr');
             await getDataFromTree(
-              // @ts-ignore
               <AppTree
                 pageProps={{
                   ...pageProps,
