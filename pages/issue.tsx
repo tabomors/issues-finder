@@ -3,9 +3,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import pick from 'lodash/pick';
 import get from 'lodash/get';
-
 import { useFindOneIssueQuery } from '../graphql/issue/findIssues.generated';
-import { withApollo } from '../lib/withApollo';
 import { IssueItem } from '../components/Issue';
 import Layout from '../components/Layout';
 
@@ -38,4 +36,4 @@ const IssuePage: NextPage = () => {
   );
 };
 
-export default withApollo(IssuePage);
+export default IssuePage;

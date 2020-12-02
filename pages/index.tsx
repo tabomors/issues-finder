@@ -16,7 +16,6 @@ import Input from '@material-ui/core/Input';
 import Layout from '../components/Layout';
 import { LanguageSelect } from '../components/Selects';
 import { IssueItem } from '../components/Issue';
-import { withApollo } from '../lib/withApollo';
 import { useGetLanguageQuery } from '../graphql/language/getLanguage.generated';
 import { useSetLanguageMutation } from '../graphql/language/setLanguage.generated';
 import { useGetLabelsQuery } from '../graphql/label/getLabels.generated';
@@ -86,7 +85,7 @@ const useFindIssues = (defaultLanguage: string, defaultLabels: string[]) => {
   }, []);
 
   const { data: languagesData } = useGetLanguageQuery();
-  let language = (languagesData && languagesData.language) || defaultLanguage;
+  const language = (languagesData && languagesData.language) || defaultLanguage;
   const [setLanguage] = useSetLanguageMutation();
 
   const { data: labelsData } = useGetLabelsQuery();
@@ -298,4 +297,4 @@ const IndexPage: NextPage = () => {
   );
 };
 
-export default withApollo(IndexPage);
+export default IndexPage;
