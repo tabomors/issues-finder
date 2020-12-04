@@ -1,3 +1,0 @@
-mutation SetLanguage($language: String!) {
-  setLanguage(language: $language) @client
-}

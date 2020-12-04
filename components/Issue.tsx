@@ -4,14 +4,14 @@ import Link from 'next/link';
 
 interface IIssueProps {
   id?: string;
-  state: string;
-  url: string;
-  body: string;
+  state?: string;
+  url?: string;
+  body?: string;
   repository?: {
     name: string;
     url: string;
   };
-  publishedAt: string;
+  publishedAt?: string;
   labels?: { name: string; color: string }[];
 }
 
@@ -22,7 +22,7 @@ export const IssueItem: React.FC<IIssueProps> = ({
   repository,
   publishedAt,
   labels,
-  id
+  id,
 }) => {
   return (
     <div className="issue-wrapper">
@@ -58,7 +58,7 @@ export const IssueItem: React.FC<IIssueProps> = ({
         }
       `}</style>
       {id && (
-        <Link href={`/issue?id=${id}`} as={`/issue/${id}`}>
+        <Link href={`/issue?id=${id}`} as={`/issue/${id}`} passHref>
           <a className="show-issue">Show issue</a>
         </Link>
       )}
@@ -72,12 +72,14 @@ export const IssueItem: React.FC<IIssueProps> = ({
         <li>
           <strong>Body:</strong>{' '}
           <p>
-            <ReactMarkdown
-              className="markdown"
-              source={body}
-              disallowedTypes={['image', 'heading']}
-              unwrapDisallowed
-            />
+            {body && (
+              <ReactMarkdown
+                className="markdown"
+                source={body}
+                disallowedTypes={['image', 'heading']}
+                unwrapDisallowed
+              />
+            )}
           </p>
         </li>
         {repository && (
