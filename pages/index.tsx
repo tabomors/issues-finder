@@ -2,8 +2,6 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import get from 'lodash/get'; // TODO: Try to use https://github.com/tc39/proposal-optional-chaining
-import pick from 'lodash/pick';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MULink from '@material-ui/core/Link';
@@ -17,7 +15,7 @@ import { useGetLanguageQuery } from '../graphql/language/getLanguage.generated';
 import { useGetLabelsQuery } from '../graphql/label/getLabels.generated';
 import {
   useFindIssuesQuery,
-  FindIssuesQuery,
+  IssueContentFragment,
 } from '../graphql/issue/findIssues.generated';
 import { Stepper } from '../components/Stepper';
 import { useApolloClient } from '@apollo/react-hooks';
@@ -31,6 +29,7 @@ import {
   GetLanguageQuery,
   GetLanguageQueryVariables,
 } from '../graphql/language/getLanguage.generated';
+import { Label } from '../types/types';
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -96,7 +95,7 @@ const useFindIssues = (defaultLanguage: string, defaultLabels: string[]) => {
         query,
         after: endCursor,
       },
-      updateQuery: (prev, { fetchMoreResult }): FindIssuesQuery => {
+      updateQuery: (prev, { fetchMoreResult }) => {
         if (!fetchMoreResult) return prev;
         const prevEdges = prev.search.edges || [];
 
@@ -250,7 +249,7 @@ const IndexPage: NextPage = () => {
                       >
                         Add label
                       </Button>
-                      <Link key={'/'} href={'/'}>
+                      <Link href={'/'} passHref>
                         <MULink
                           className={classes.clearButton}
                           variant="button"
@@ -263,23 +262,21 @@ const IndexPage: NextPage = () => {
                   </div>
                   {loading && edges.length === 0 ? <p>Loading...</p> : null}
                   <div className={classes.issuesContainer}>
-                    {edges.map((edge: any) => (
-                      <Card key={edge.node.id} className={classes.issue}>
-                        <CardContent>
-                          <IssueItem
-                            {...pick(edge.node, [
-                              'state',
-                              'url',
-                              'body',
-                              'publishedAt',
-                              'repository',
-                              'id',
-                            ])}
-                            labels={get(edge.node, 'labels.nodes', [])}
-                          />
-                        </CardContent>
-                      </Card>
-                    ))}
+                    {edges.map((edge) => {
+                      const node = edge?.node as
+                        | IssueContentFragment
+                        | undefined;
+                      return (
+                        <Card key={node?.id} className={classes.issue}>
+                          <CardContent>
+                            <IssueItem
+                              {...node}
+                              labels={(node?.labels?.nodes || []) as Label[]}
+                            />
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
                   </div>
                   {loading && edges.length > 0 ? <p>Loading...</p> : null}
                   {edges.length > 0 && (
