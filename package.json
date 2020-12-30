@@ -55,6 +55,7 @@
     "@graphql-codegen/typescript-react-apollo": "^2.2.1",
     "@graphql-codegen/typescript-resolvers": "^1.18.1",
     "@types/graphql": "^14.5.0",
+    "@types/http-proxy-middleware": "^0.19.3",
     "@types/jest": "^26.0.19",
     "@types/lodash": "^4.14.166",
     "@types/material-ui": "^0.21.8",
