@@ -7,7 +7,7 @@ module.exports = {
     ];
   },
   env: {
-    SERVER_URL: process.env.SERVER || 'http://localhost:3000',
-    API_TOKEN: process.env.API_TOKEN || ''
+    SERVER_URL: process.env.SERVER || '',
+    API_TOKEN: process.env.API_TOKEN || '',
   },
 };
