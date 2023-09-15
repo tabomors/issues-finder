@@ -1,0 +1,6 @@
+query findOneIssue($id: ID!) {
+  node(id: $id) {
+    __typename
+    ...IssueContent
+  }
+}

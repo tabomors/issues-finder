@@ -1,0 +1,23 @@
+fragment IssueContent on Issue {
+  state
+  url
+  id
+  repository {
+    name
+    url
+  }
+  closed
+  labels(first: 10) {
+    totalCount
+    nodes {
+      name
+      color
+    }
+  }
+  body
+  createdAt
+  comments {
+    totalCount
+  }
+  title
+}

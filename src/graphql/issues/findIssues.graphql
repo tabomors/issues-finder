@@ -1,0 +1,19 @@
+query findIssues($query: String!, $after: String) {
+  search(type: ISSUE, query: $query, first: 50, after: $after) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    edges {
+      cursor
+      node {
+        __typename
+        ...IssueContent
+      }
+    }
+  }
+}
+
+

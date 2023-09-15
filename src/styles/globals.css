@@ -1,0 +1,6 @@
+.rich-text {
+  img {
+    display: block;
+    max-width: 150px;
+  }
+}

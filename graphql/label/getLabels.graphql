@@ -1,3 +1,0 @@
-query GetLabels {
-  labels @client
-}

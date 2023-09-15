@@ -1,4 +1,0 @@
-pre-commit:
-  commands:
-    format:
-      run: npm run format:staged

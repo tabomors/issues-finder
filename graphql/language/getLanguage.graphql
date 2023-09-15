@@ -1,3 +1,0 @@
-query GetLanguage {
-  language @client
-}
