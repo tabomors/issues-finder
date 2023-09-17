@@ -10,14 +10,14 @@ For example you can choose `Javascript` lang and `good-first-issue` label and it
 
 # Motivation
 
-1) I created it for myself in order to find issues to contribute
-2) I created this project with modern stack because i will use this stack on the next project at work. So in general i think it is overkill to use these technologies for this tiny app
+1. I created it for myself in order to find issues to contribute
+2. I created this project with modern stack because i will use this stack on the next project at work. So in general i think it is overkill to use these technologies for this tiny app
 
 Stack:
-* TypeScript
-* Next.js
-* Apollo
-* Code generation for graphql
-* Docker
-* CircleCI
 
+- TypeScript
+- Next.js
+- Apollo
+- Code generation for graphql
+- Docker
+- CircleCI

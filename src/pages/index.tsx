@@ -23,7 +23,7 @@ export function buildQuery(language: string, text?: string, label?: string) {
 
   return `state:\"open\" ${textQuery} ${languageQuery} ${labelQuery}`.replace(
     /\s+/g,
-    ' '
+    ' ',
   );
 }
 
@@ -56,7 +56,7 @@ export default function Home() {
         query: buildQuery(
           formValues.language as string,
           formValues.text,
-          formValues.label
+          formValues.label,
         ),
       },
       {
@@ -66,7 +66,7 @@ export default function Home() {
             ? { after: lastPage.search.pageInfo.endCursor }
             : null;
         },
-      }
+      },
     );
 
   const issues = (data?.pages || []).flatMap((page) => {
@@ -87,8 +87,6 @@ export default function Home() {
       return acc;
     }, []);
   });
-
-  console.log('issues', issues);
 
   const hasNextPage = !!data?.pages?.at(-1)?.search?.pageInfo?.hasNextPage;
 
@@ -144,7 +142,13 @@ export default function Home() {
 
                   <Flex justify={'space-between'} align="center" mb="md">
                     <Text color="dimmed">💬 {issue.commentsCount}</Text>
-                    <Text component='a' color="indigo" weight="bolder" target="_blank" href={issue.repository.url}>
+                    <Text
+                      component="a"
+                      color="indigo"
+                      weight="bolder"
+                      target="_blank"
+                      href={issue.repository.url}
+                    >
                       {issue.repository.name}
                     </Text>
                   </Flex>

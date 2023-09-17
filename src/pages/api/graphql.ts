@@ -25,7 +25,6 @@ export const auth = (handler: NextRequestHandler) => {
   return async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
     // NOTE: for local development
     if (env.API_TOKEN) {
-      console.log('api token', env.API_TOKEN);
       req.headers.authorization = `Bearer ${env.API_TOKEN}`;
       return handler(req, res);
     }

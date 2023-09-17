@@ -15,7 +15,7 @@ const config: CodegenConfig = {
         fetcher: {
           endpoint: 'endpointUrl',
         },
-        addInfiniteQuery: true
+        addInfiniteQuery: true,
       },
       presetConfig: {
         extension: '.generated.tsx',
@@ -34,4 +34,4 @@ const config: CodegenConfig = {
   },
 };
 
-export default config
+export default config;

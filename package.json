@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "gen": "graphql-codegen --config codegen.ts"
+    "gen": "graphql-codegen --config codegen.ts",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -29,7 +31,6 @@
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "formik": "^2.4.4",
-    "framer-motion": "^10.16.4",
     "http-proxy-middleware": "^2.0.6",
     "markdown-to-jsx": "^7.3.2",
     "next": "13.4.19",
@@ -43,6 +44,7 @@
     "@graphql-codegen/fragment-matcher": "^5.0.0",
     "@graphql-codegen/near-operation-file-preset": "^2.5.0",
     "@graphql-codegen/typescript-operations": "^4.0.1",
-    "@graphql-codegen/typescript-react-query": "^4.1.0"
+    "@graphql-codegen/typescript-react-query": "^4.1.0",
+    "prettier": "^3.0.3"
   }
 }

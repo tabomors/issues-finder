@@ -66,7 +66,7 @@ export const Form: React.FC<FormProps> = ({
   });
 
   const [languageOptions, setLanguageOptions] = useState(
-    defaultLanguageOptions
+    defaultLanguageOptions,
   );
   const [labelOptions, setLabelOptions] = useState(defaultLabelOptions);
 

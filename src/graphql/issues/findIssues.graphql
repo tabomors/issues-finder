@@ -15,5 +15,3 @@ query findIssues($query: String!, $after: String) {
     }
   }
 }
-
-
