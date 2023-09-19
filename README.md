@@ -4,7 +4,7 @@
 
 # Small app for searching github issues by label and language
 
-This app can help you find issues by label and language. It might be helpful if you are searching for issues to contribute to on GitHub. For example, you can choose the `JavaScript`` language and the `good-first-issue`` label, and it will show you a list of issues with that label.
+This app can help you find issues by label and language. It might be helpful if you are searching for issues to contribute to on GitHub. For example, you can choose the `JavaScript` language and the `good-first-issue` label, and it will show you a list of issues with that label.
 
 # Motivation
 
