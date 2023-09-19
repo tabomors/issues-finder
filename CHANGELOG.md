@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/tabomors/issues-finder/compare/v1.1.0...v1.2.0) (2023-09-19)
+
+
+### Features
+
+* deploy to prod on release ([97af32c](https://github.com/tabomors/issues-finder/commit/97af32c9cd57039c0543fe636ef357704b3b1352))
+
 # [1.1.0](https://github.com/tabomors/issues-finder/compare/v1.0.1...v1.1.0) (2023-09-19)
 
 
