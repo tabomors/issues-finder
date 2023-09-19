@@ -1,3 +1,11 @@
+## [1.2.1](https://github.com/tabomors/issues-finder/compare/v1.2.0...v1.2.1) (2023-09-19)
+
+
+### Bug Fixes
+
+* fix markdown ([ab3e34c](https://github.com/tabomors/issues-finder/commit/ab3e34c4af6352718bd8be9620224de6f3129e4e))
+* update readme ([630388e](https://github.com/tabomors/issues-finder/commit/630388e10929438b51df259d4d8721734766417f))
+
 # [1.2.0](https://github.com/tabomors/issues-finder/compare/v1.1.0...v1.2.0) (2023-09-19)
 
 
